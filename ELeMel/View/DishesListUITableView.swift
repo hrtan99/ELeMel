@@ -18,6 +18,8 @@ class DishesListUITableView: UITableView {
     }
     */
     
+//    var shopCart:ShopCartUIView
+    
     init(frame: CGRect) {
         super.init(frame: frame, style: .plain)
         let xib = UINib(nibName: "DishesTableViewCell", bundle: nil)
@@ -26,6 +28,11 @@ class DishesListUITableView: UITableView {
         // 设置数据源为自己
         self.dataSource = self
         self.rowHeight = 120
+        
+//        shopCart = 
+        
+        
+        
     }
     
     required init?(coder: NSCoder) {

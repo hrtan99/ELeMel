@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -159,6 +160,45 @@
             </objects>
             <point key="canvasLocation" x="1038" y="665"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Cqi-Nf-Jcd">
+            <objects>
+                <navigationController id="uhG-VT-ZXu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9vO-Qe-5cQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZW-fy-E4m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2416" y="861"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LDC-eQ-jVR">
+            <objects>
+                <viewController id="FGR-k8-bcb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ja-kf-0V5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xP0-wY-6gD">
+                                <rect key="frame" x="0.0" y="145" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="6nb-wD-Rhy">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.left" catalog="system" id="9xm-mk-Hfh"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bdA-pV-X5e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MTP-Qy-e7K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1786" y="772"/>
+        </scene>
         <!--订单-->
         <scene sceneID="LBy-ar-H5Q">
             <objects>
@@ -212,6 +252,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="doc.text" catalog="system" width="115" height="128"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
