@@ -31,5 +31,27 @@ class DetailPageTitleUIView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    // 按下对应的按钮 contentview应该进行切换
+    @IBAction func bookMealBttonPressed(_ sender: UIButton) {
+        let controller = UIViewController.current() as! RestaurantDetailPageViewController
+        controller.scrollView?.detailPage?.contentView?.changeView(index: 0)
+    }
+    
 
+    @IBAction func commentBttonPressed(_ sender: UIButton) {
+        let controller = UIViewController.current() as! RestaurantDetailPageViewController
+        controller.scrollView?.detailPage?.contentView?.changeView(index: 1)
+        
+    }
+    
+
+    @IBAction func restaurantButtonPressed(_ sender: UIButton) {
+        let controller = UIViewController.current() as! RestaurantDetailPageViewController
+        controller.scrollView?.detailPage?.contentView?.changeView(index: 2)
+        
+        
+        
+    }
+    
 }

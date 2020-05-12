@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailPageContentUIView: UIView {
+class DetailPageContentUIView: UIScrollView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -19,11 +19,12 @@ class DetailPageContentUIView: UIView {
     */
     var dishesContentView: DishesListUITableView?
     var commentContentView: CommentListUITableView?
-    var RestaurantInfoContentView: RestaurantInfoUIView?
+    var restaurantInfoContentView: RestaurantInfoUIView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        // 滑动窗口的大小
+        self.contentSize = CGSize(width: 3 * UIScreen.main.bounds.width, height: frame.height)
         initView()
         
         
@@ -35,16 +36,53 @@ class DetailPageContentUIView: UIView {
     }
     
     func initView(){
-        // 先只放一个contentview测试一下
+        let SCREEN_WIDTH = UIScreen.main.bounds.width
         
-        let dishesContentViewFrame = CGRect(x: 0, y: 44, width: UIScreen.main.bounds.width, height: 800-44)
+        // 采用scrollview进行左右滑动
+        
+        let dishesContentViewFrame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 800-44)
         dishesContentView = DishesListUITableView(frame: dishesContentViewFrame)
         dishesContentView?.showsVerticalScrollIndicator = false    // 隐藏滚动条
         
+        let commentContentViewFrame = CGRect(x: SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: 800-44)
+        commentContentView = CommentListUITableView(frame: commentContentViewFrame)
+        
+        let restaurantInfoCardFrame = CGRect(x: 2 * SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: 800-44)
+        restaurantInfoContentView = RestaurantInfoUIView(frame: restaurantInfoCardFrame)
+        
         self.addSubview(dishesContentView!)
+        self.addSubview(commentContentView!)
+        self.addSubview(restaurantInfoContentView!)
+        self.isScrollEnabled = true
+        self.isPagingEnabled = true
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
         
         
     }
+    
+    
+    // 根据index切换视图， 值为0，1，2
+    func changeView(index: Int) {
+        
+        self.setContentOffset(CGPoint(x: CGFloat(index) * UIScreen.main.bounds.width, y: 0), animated: true)
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
+
 

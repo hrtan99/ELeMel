@@ -22,14 +22,16 @@ class RestaurantPageUIScrollView: UIScrollView {
     var restaurantInfoCard: RestaurantInfoCardUIView?   // 餐馆信息卡片
     var detailPage: DetailPageUIView?    // 点餐 评价等细节页面
     
-    var originY: CGFloat?   // 初始的y坐标
+    var firstOffsetFlag: Bool = true
+    var ORIGIN_OFFSET: CGFloat?
+    var originY: CGFloat?
     let ORIGIN_HEIGHT: CGFloat = 150
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        originY = frame.minY  // 记录初始的y坐标
         self.showsVerticalScrollIndicator = false //隐藏滑动条
         self.delegate = self
+        originY = frame.origin.y
         initView()
         
     }
@@ -72,17 +74,42 @@ class RestaurantPageUIScrollView: UIScrollView {
 extension RestaurantPageUIScrollView: UIScrollViewDelegate{
     // 监听滑动事件
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = self.contentOffset.y - originY!    // y方向偏移 需要减掉初始的y坐标来修正
+        
+        // 记录第一次的偏移
+        if(firstOffsetFlag){
+            ORIGIN_OFFSET = self.contentOffset.y
+            firstOffsetFlag = false
+        }
+        
+        debugPrint("self.contentOffset.y: \(self.contentOffset.y)")
+        let yOffset = self.contentOffset.y -  originY!  // y方向偏移 需要减掉初始的偏移来修正
         debugPrint("scrollView offset: \(yOffset)")
         debugPrint("restaurantImageView y position: \(restaurantImageView!.frame.minY)")
+        debugPrint(restaurantImageView!.frame.origin)
         
-        
-        // 手指向下滑动的情况
-        if(yOffset<0){
+        // 手指向下滑动的情况 缩放顶部的图片
+        if(yOffset < 0){
             var frame = restaurantImageView!.frame
             frame.origin.y = yOffset
             frame.size.height = ORIGIN_HEIGHT - yOffset
             restaurantImageView!.frame = frame
+        }
+        debugPrint(detailPage!.titleView!.frame.origin)
+        // 向上滑动 根据首页图片的位置设置导航栏透明度
+        let navigatironController = UIViewController.current()?.navigationController
+        if(self.contentOffset.y - ORIGIN_OFFSET! < 150){
+            let alpha = (self.contentOffset.y - ORIGIN_OFFSET!) / 150
+            navigatironController!.navigationBar.subviews.first!.alpha = alpha
+            
+            debugPrint(alpha)
+            
+            
+        }
+        else{
+            navigatironController!.navigationBar.subviews.first!.alpha = 1
+            
+            
+            
         }
         
         

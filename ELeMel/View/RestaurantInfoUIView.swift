@@ -17,5 +17,22 @@ class RestaurantInfoUIView: UIView {
         // Drawing code
     }
     */
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        let xib = UINib(nibName: "RestaurantInfoUIView", bundle: nil)
+        let view = xib.instantiate(withOwner: self, options: nil).first as! UIView
+        self.addSubview(view)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    
+    
+    
 
 }
