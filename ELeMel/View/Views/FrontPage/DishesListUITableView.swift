@@ -59,9 +59,10 @@ extension DishesListUITableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         debugPrint("exec selected func")
         let currentVC = UIViewController.current()
-        
-        let newVC = UIViewController()
-        newVC.view.backgroundColor = .white
+        let cell = cellForRow(at: indexPath) as! DishesTableViewCell
+        let newVC = MealInfoViewController()
+        newVC.cell = cell
+//        newVC.view.backgroundColor = .white
         currentVC?.present(newVC, animated: true, completion: nil)
         
         

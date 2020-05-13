@@ -42,14 +42,12 @@ class DetailPageTitleUIView: UIView {
     @IBAction func commentBttonPressed(_ sender: UIButton) {
         let controller = UIViewController.current() as! RestaurantDetailPageViewController
         controller.scrollView?.detailPage?.contentView?.changeView(index: 1)
-        
     }
     
 
     @IBAction func restaurantButtonPressed(_ sender: UIButton) {
         let controller = UIViewController.current() as! RestaurantDetailPageViewController
         controller.scrollView?.detailPage?.contentView?.changeView(index: 2)
-        
         
         
     }

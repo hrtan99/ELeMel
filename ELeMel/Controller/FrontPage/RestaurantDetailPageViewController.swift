@@ -11,9 +11,9 @@ import UIKit
 class RestaurantDetailPageViewController: UIViewController {
     
 
-    var scrollView:RestaurantPageUIScrollView?
+    var scrollView: RestaurantPageUIScrollView?
+    var shopCart: ShopCartUIView?
     
-   
     let STATUS_BAR_HEIGHT = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height   // 状态栏高度
 
     
@@ -29,7 +29,7 @@ class RestaurantDetailPageViewController: UIViewController {
         
         self.view.backgroundColor = .white
 
-        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .systemBackground
         self.navigationController?.navigationBar.shadowImage = UIImage()   // 去除navigationbar下方的阴影横线
         self.navigationController?.navigationBar.isTranslucent = true
         
@@ -38,17 +38,19 @@ class RestaurantDetailPageViewController: UIViewController {
 //        debugPrint(scrollView?.frame)
         scrollView?.isScrollEnabled = true
         scrollView?.showsVerticalScrollIndicator = false
-        scrollView?.contentSize = CGSize(width: 414, height: 1800)
+        scrollView?.contentSize = CGSize(width: 414, height: 1100)
 
+        let shopCartFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - 85, width: UIScreen.main.bounds.width, height: 85)
+        shopCart = ShopCartUIView(frame: shopCartFrame)
+            
 
         self.view.addSubview(scrollView!)
-        
+        self.view.addSubview(shopCart!)
         
     }
     
     
 
-    
 
     
     /*

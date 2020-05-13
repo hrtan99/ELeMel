@@ -25,7 +25,7 @@ class RestaurantPageUIScrollView: UIScrollView {
     var firstOffsetFlag: Bool = true
     var ORIGIN_OFFSET: CGFloat?
     var originY: CGFloat?
-    let ORIGIN_HEIGHT: CGFloat = 150
+    let ORIGIN_HEIGHT: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,12 +52,13 @@ class RestaurantPageUIScrollView: UIScrollView {
         restaurantImageView?.contentMode = .scaleAspectFill
         
         // 初始化餐馆信息卡片
-        let restaurantInfoCardFrame = CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: 150)
+        let restaurantInfoCardFrame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 150)
         restaurantInfoCard = RestaurantInfoCardUIView(frame: restaurantInfoCardFrame)
         
         // 初始化点餐评论等细节页面
-        let detailPageFrame = CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: 800)
+        let detailPageFrame = CGRect(x: 0, y: 250, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 88)
         detailPage = DetailPageUIView(frame: detailPageFrame)
+        
         
         
         self.addSubview(restaurantImageView!)
@@ -81,38 +82,46 @@ extension RestaurantPageUIScrollView: UIScrollViewDelegate{
             firstOffsetFlag = false
         }
         
-        debugPrint("self.contentOffset.y: \(self.contentOffset.y)")
+//        debugPrint("self.contentOffset.y: \(self.contentOffset.y)")
         let yOffset = self.contentOffset.y -  originY!  // y方向偏移 需要减掉初始的偏移来修正
-        debugPrint("scrollView offset: \(yOffset)")
-        debugPrint("restaurantImageView y position: \(restaurantImageView!.frame.minY)")
-        debugPrint(restaurantImageView!.frame.origin)
+//        debugPrint("scrollView offset: \(yOffset)")
+//        debugPrint("restaurantImageView y position: \(restaurantImageView!.frame.minY)")
+//        debugPrint(restaurantImageView!.frame.origin)
         
         // 手指向下滑动的情况 缩放顶部的图片
-        if(yOffset < 0){
+        if(yOffset <= -88){  // 实际上这里小于-88就行， 设置成44只是为了向上滑动图片有缩小的效果
             var frame = restaurantImageView!.frame
             frame.origin.y = yOffset
             frame.size.height = ORIGIN_HEIGHT - yOffset
             restaurantImageView!.frame = frame
         }
-        debugPrint(detailPage!.titleView!.frame.origin)
+//        debugPrint(detailPage!.titleView!.frame.origin)
+        
         // 向上滑动 根据首页图片的位置设置导航栏透明度
         let navigatironController = UIViewController.current()?.navigationController
-        if(self.contentOffset.y - ORIGIN_OFFSET! < 150){
-            let alpha = (self.contentOffset.y - ORIGIN_OFFSET!) / 150
+        if(self.contentOffset.y - ORIGIN_OFFSET! < 100){
+            let alpha = (self.contentOffset.y - ORIGIN_OFFSET!) / 100
             navigatironController!.navigationBar.subviews.first!.alpha = alpha
             
-            debugPrint(alpha)
+//            debugPrint(alpha)
             
             
         }
         else{
             navigatironController!.navigationBar.subviews.first!.alpha = 1
-            
-            
-            
         }
         
+        // 当titleview超过导航栏后，停靠在导航栏
+        var frame = detailPage!.titleView!.frame
+        if(self.contentOffset.y - ORIGIN_OFFSET! > 250) {
+            frame.origin.y =  (self.contentOffset.y - ORIGIN_OFFSET!) - 250  // 进行位移补偿
+        }
+        else{
+            frame.origin.y =  0   // 否则恢复原位
+        }
+        detailPage!.titleView!.frame = frame
         
+        // 设置shopcart的位置
         
     }
     

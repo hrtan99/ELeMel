@@ -42,12 +42,13 @@ class DetailPageUIView: UIView {
         let titleViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
         titleView = DetailPageTitleUIView(frame: titleViewFrame)
         
-        let contentViewFrame = CGRect(x: 0, y: 44, width: UIScreen.main.bounds.width, height: 800-44)
+        let contentViewFrame = CGRect(x: 0, y: 44, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 88 - 44)
         contentView = DetailPageContentUIView(frame: contentViewFrame)
         
-        self.addSubview(titleView!)
         self.addSubview(contentView!)
+        self.addSubview(titleView!)
 
+        
         
     }
     

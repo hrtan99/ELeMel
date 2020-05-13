@@ -20,6 +20,7 @@ class DetailPageContentUIView: UIScrollView {
     var dishesContentView: DishesListUITableView?
     var commentContentView: CommentListUITableView?
     var restaurantInfoContentView: RestaurantInfoUIView?
+    var shopCart: ShopCartUIView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,27 +33,35 @@ class DetailPageContentUIView: UIScrollView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        fatalError("init(coder:) has not been implemented")
     }
     
     func initView(){
         let SCREEN_WIDTH = UIScreen.main.bounds.width
         
         // 采用scrollview进行左右滑动
-        
         let dishesContentViewFrame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 800-44)
         dishesContentView = DishesListUITableView(frame: dishesContentViewFrame)
         dishesContentView?.showsVerticalScrollIndicator = false    // 隐藏滚动条
         
         let commentContentViewFrame = CGRect(x: SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: 800-44)
         commentContentView = CommentListUITableView(frame: commentContentViewFrame)
+        commentContentView?.showsVerticalScrollIndicator = false
         
         let restaurantInfoCardFrame = CGRect(x: 2 * SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: 800-44)
         restaurantInfoContentView = RestaurantInfoUIView(frame: restaurantInfoCardFrame)
+        restaurantInfoContentView?.backgroundColor = .systemGray6
+        
+        
+        
+//        let shopCartFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - 250 - 44 - 85, width: SCREEN_WIDTH, height: 85)
+//        print("UIScreen.main.bounds.height: \(UIScreen.main.bounds.height)" )
+//        shopCart = ShopCartUIView(frame: shopCartFrame)
+        
         
         self.addSubview(dishesContentView!)
         self.addSubview(commentContentView!)
         self.addSubview(restaurantInfoContentView!)
+//        self.dishesContentView!.addSubview(shopCart!)
         self.isScrollEnabled = true
         self.isPagingEnabled = true
         self.showsHorizontalScrollIndicator = false

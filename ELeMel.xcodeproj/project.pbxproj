@@ -20,6 +20,12 @@
 		E93E903F246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E903E246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift */; };
 		E93E9041246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E9040246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift */; };
 		E93E904324617A2300D0EFE8 /* UserInfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */; };
+		E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */; };
+		E9407AA2246AFEEC00A3413B /* MealInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */; };
+		E9407AA8246BE91500A3413B /* ShopCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AA7246BE91500A3413B /* ShopCartViewController.swift */; };
+		E9407AAC246C437200A3413B /* ShopCartListUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */; };
+		E9407AAF246C440B00A3413B /* ShopCartListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AAD246C440B00A3413B /* ShopCartListTableViewCell.swift */; };
+		E9407AB0246C440B00A3413B /* ShopCartListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AAE246C440B00A3413B /* ShopCartListTableViewCell.xib */; };
 		E943CD44246933CD0076E8CE /* RestaurantInfoCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */; };
 		E943CD46246933E70076E8CE /* RestaurantInfoCardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */; };
 		E943CD4C24693BD30076E8CE /* DetailPageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */; };
@@ -75,6 +81,12 @@
 		E93E903E246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormPageNavigationViewController.swift; sourceTree = "<group>"; };
 		E93E9040246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPageNavigationViewController.swift; sourceTree = "<group>"; };
 		E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPageTableViewController.swift; sourceTree = "<group>"; };
+		E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealInfoViewController.swift; sourceTree = "<group>"; };
+		E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealInfoViewController.xib; sourceTree = "<group>"; };
+		E9407AA7246BE91500A3413B /* ShopCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartViewController.swift; sourceTree = "<group>"; };
+		E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListUITableView.swift; sourceTree = "<group>"; };
+		E9407AAD246C440B00A3413B /* ShopCartListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListTableViewCell.swift; sourceTree = "<group>"; };
+		E9407AAE246C440B00A3413B /* ShopCartListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCartListTableViewCell.xib; sourceTree = "<group>"; };
 		E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoCardUIView.swift; sourceTree = "<group>"; };
 		E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantInfoCardUIView.xib; sourceTree = "<group>"; };
 		E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageUIView.swift; sourceTree = "<group>"; };
@@ -130,15 +142,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E937E9DD24667DA900C897B2 /* RestaurantDetailPage */ = {
-			isa = PBXGroup;
-			children = (
-				E937E9F72468640100C897B2 /* RestaurantPageUIScrollView.swift */,
-				E962486F2464EF0E00475CF6 /* RestaurantDetailPageViewController.swift */,
-			);
-			path = RestaurantDetailPage;
-			sourceTree = "<group>";
-		};
 		E937E9E82466DCFD00C897B2 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,10 +150,19 @@
 			path = ToolClass;
 			sourceTree = "<group>";
 		};
-		E96248662464237D00475CF6 /* View */ = {
+		E9407AA3246BA55800A3413B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E96248672464239400475CF6 /* Cells */,
+				E9407AA4246BA5B300A3413B /* FrontPage */,
+				E9407AA5246BA5C100A3413B /* OrderFormPage */,
+				E9407AA6246BA5CF00A3413B /* UserInfoPage */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E9407AA4246BA5B300A3413B /* FrontPage */ = {
+			isa = PBXGroup;
+			children = (
 				E937E9EB2466E74100C897B2 /* ShopCartUIView.swift */,
 				E937E9EF2466E7D100C897B2 /* ShopCartUIView.xib */,
 				E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */,
@@ -163,6 +175,31 @@
 				E943CD5324693F620076E8CE /* CommentListUITableView.swift */,
 				E943CD552469453E0076E8CE /* RestaurantInfoUIView.swift */,
 				E943CD57246945580076E8CE /* RestaurantInfoUIView.xib */,
+				E937E9F72468640100C897B2 /* RestaurantPageUIScrollView.swift */,
+				E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */,
+			);
+			path = FrontPage;
+			sourceTree = "<group>";
+		};
+		E9407AA5246BA5C100A3413B /* OrderFormPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderFormPage;
+			sourceTree = "<group>";
+		};
+		E9407AA6246BA5CF00A3413B /* UserInfoPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserInfoPage;
+			sourceTree = "<group>";
+		};
+		E96248662464237D00475CF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E96248672464239400475CF6 /* Cells */,
+				E9407AA3246BA55800A3413B /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +223,8 @@
 				E937E9E22466AA8D00C897B2 /* DishesTableViewCell.xib */,
 				E937E9F12468479200C897B2 /* CommentTableViewCell.swift */,
 				E937E9F22468479200C897B2 /* CommentTableViewCell.xib */,
+				E9407AAD246C440B00A3413B /* ShopCartListTableViewCell.swift */,
+				E9407AAE246C440B00A3413B /* ShopCartListTableViewCell.xib */,
 			);
 			path = FrontPage;
 			sourceTree = "<group>";
@@ -227,15 +266,15 @@
 		E97954072459355F00D861FE /* ELeMel */ = {
 			isa = PBXGroup;
 			children = (
-				E937E9E82466DCFD00C897B2 /* ToolClass */,
-				E96248662464237D00475CF6 /* View */,
 				E97954082459355F00D861FE /* AppDelegate.swift */,
 				E979540A2459355F00D861FE /* SceneDelegate.swift */,
-				E97954382459359900D861FE /* Controller */,
-				E979540E2459355F00D861FE /* Main.storyboard */,
 				E97954112459356000D861FE /* Assets.xcassets */,
+				E979540E2459355F00D861FE /* Main.storyboard */,
 				E97954132459356000D861FE /* LaunchScreen.storyboard */,
 				E97954162459356000D861FE /* Info.plist */,
+				E937E9E82466DCFD00C897B2 /* ToolClass */,
+				E96248662464237D00475CF6 /* View */,
+				E97954382459359900D861FE /* Controller */,
 			);
 			path = ELeMel;
 			sourceTree = "<group>";
@@ -274,7 +313,10 @@
 			children = (
 				E979543D2459706B00D861FE /* FrontPageTableViewController.swift */,
 				E93E903C246179A200D0EFE8 /* FrontPageNavigationViewController.swift */,
-				E937E9DD24667DA900C897B2 /* RestaurantDetailPage */,
+				E962486F2464EF0E00475CF6 /* RestaurantDetailPageViewController.swift */,
+				E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */,
+				E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */,
+				E9407AA7246BE91500A3413B /* ShopCartViewController.swift */,
 			);
 			path = FrontPage;
 			sourceTree = "<group>";
@@ -404,11 +446,13 @@
 				E97954152459356000D861FE /* LaunchScreen.storyboard in Resources */,
 				E97954122459356000D861FE /* Assets.xcassets in Resources */,
 				E962486E2464270D00475CF6 /* RestaurantIntroductionTableViewCell.xib in Resources */,
+				E9407AA2246AFEEC00A3413B /* MealInfoViewController.xib in Resources */,
 				E937E9E42466AA8D00C897B2 /* DishesTableViewCell.xib in Resources */,
 				E937E9F42468479200C897B2 /* CommentTableViewCell.xib in Resources */,
 				E943CD5224693C620076E8CE /* DetailPageTitleUIView.xib in Resources */,
 				E943CD46246933E70076E8CE /* RestaurantInfoCardUIView.xib in Resources */,
 				E943CD58246945580076E8CE /* RestaurantInfoUIView.xib in Resources */,
+				E9407AB0246C440B00A3413B /* ShopCartListTableViewCell.xib in Resources */,
 				E937E9F02466E7D100C897B2 /* ShopCartUIView.xib in Resources */,
 				E97954102459355F00D861FE /* Main.storyboard in Resources */,
 			);
@@ -444,13 +488,17 @@
 				E943CD5024693C420076E8CE /* DetailPageContentUIView.swift in Sources */,
 				E943CD4E24693C190076E8CE /* DetailPageTitleUIView.swift in Sources */,
 				E93E903D246179A200D0EFE8 /* FrontPageNavigationViewController.swift in Sources */,
+				E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */,
 				E937E9E62466B24B00C897B2 /* DishesListUITableView.swift in Sources */,
 				E93E903F246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift in Sources */,
+				E9407AA8246BE91500A3413B /* ShopCartViewController.swift in Sources */,
 				E9795447245974A400D861FE /* OrderFormPageTableViewController.swift in Sources */,
 				E937E9E32466AA8D00C897B2 /* DishesTableViewCell.swift in Sources */,
+				E9407AAC246C437200A3413B /* ShopCartListUITableView.swift in Sources */,
 				E93E9041246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift in Sources */,
 				E943CD5424693F620076E8CE /* CommentListUITableView.swift in Sources */,
 				E943CD4C24693BD30076E8CE /* DetailPageUIView.swift in Sources */,
+				E9407AAF246C440B00A3413B /* ShopCartListTableViewCell.swift in Sources */,
 				E937E9EA2466DD3500C897B2 /* Extensions.swift in Sources */,
 				E937E9F32468479200C897B2 /* CommentTableViewCell.swift in Sources */,
 				E979543A2459366500D861FE /* RootTabBarViewController.swift in Sources */,
