@@ -43,7 +43,13 @@ class DishesTableViewCell: UITableViewCell {
         
         // 更新购物车列表
         ShopCartListUITableView.rows = ShopCartUIView.productions.count
-
+        
+        var VC = UIViewController.current()
+        if VC is MealInfoViewController {
+            VC = (VC as! MealInfoViewController).superViewController!
+        }
+        
+        (VC as! RestaurantDetailPageViewController).shopCart!.updateShopCartView()
         
     }
     @IBAction func subButtonPressed(_ sender: Any) {
@@ -57,6 +63,9 @@ class DishesTableViewCell: UITableViewCell {
         
         // 更新购物车列表
         ShopCartListUITableView.rows = ShopCartUIView.productions.count
+        
+        let VC = UIViewController.current() as! RestaurantDetailPageViewController
+        VC.shopCart!.updateShopCartView()
 
         
     }

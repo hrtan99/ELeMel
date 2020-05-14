@@ -21,11 +21,17 @@ class ShopCartListUITableView: UITableView {
     static var rows: Int = 0   // 行数，对应商品的种类
     var myBackgroundView: UIView?
 
-    // 动画开始和结束时的frame
-    let initFrame = CGRect(x: 0, y: 810, width: UIScreen.main.bounds.width, height: 0)
-//    let finalFrame = CGRect(x: 0, y: 550, width: UIScreen.main.bounds.width, height: 260)
     let cellHeight:Int = 44
-    let animationDuration:TimeInterval = 0.5 // 动画时间
+    let animationDuration:TimeInterval = 0.25 // 动画时间
+    let maxHeight = UIScreen.main.bounds.height * 0.6
+    // 动画开始和结束时的frame
+    let initFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - 85, width: UIScreen.main.bounds.width, height: 0)
+
+    
+    let bgInitFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 85)
+    
+    // 记录顶部导航栏透明度
+    static var recordNaviBarAlpha:CGFloat = 0
     
     override init(frame: CGRect, style: UITableView.Style) {
         
@@ -34,16 +40,22 @@ class ShopCartListUITableView: UITableView {
         let xib = UINib(nibName: "ShopCartListTableViewCell", bundle: nil)
         self.register(xib, forCellReuseIdentifier: "cell")
         
+        self.dataSource = self
+        self.delegate = self
+        self.bounces = false
+        self.alwaysBounceVertical = false
+        
         // 设置headerView
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
-        headerView.backgroundColor = .brown
+        let headerView = ShopCartListHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
         self.tableHeaderView = headerView
         
+        // cell的行高
         self.rowHeight = CGFloat(cellHeight)
         
         myBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 85))
         myBackgroundView?.backgroundColor = .gray
         myBackgroundView?.alpha = 0
+        addTapGestrueForBackground()
         
         
     }
@@ -58,56 +70,55 @@ class ShopCartListUITableView: UITableView {
         if ShopCartListUITableView.isShow {
             showShopCartList(flag: false)
             ShopCartListUITableView.isShow = false
+            return
             
         }
         else {
             showShopCartList(flag: true)
             ShopCartListUITableView.isShow = true
+            return
         }
         
         
     }
     
     
-    
+    // 显示购物车列表
     func showShopCartList(flag: Bool){
-        superview?.addSubview(myBackgroundView!)
-        superview?.addSubview(self)
+        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight - 85 - 35, width: UIScreen.main.bounds.width, height: self.rowHeight + 35)
+        let bgFinalFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: finalFrame.origin.y)
         
-        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight - 85 - 44, width: UIScreen.main.bounds.width, height: self.rowHeight + 50)
         if flag {
-            
+            UIApplication.shared.windows.first?.addSubview(myBackgroundView!)
+//            superview?.addSubview(myBackgroundView!)
+            superview?.addSubview(self)
+            self.reloadData()
             UIView.animate(withDuration: animationDuration){
                 self.myBackgroundView?.alpha = 0.5
+                self.myBackgroundView?.frame = bgFinalFrame
                 self.frame = finalFrame
-                
-                
                 
             }
             
-            
-            
         }
         else{
-            
-            
+            UIView.animate(withDuration: animationDuration, animations: {
+                // 背景先变透明 菜单先收缩
+                self.myBackgroundView?.alpha = 0
+                self.myBackgroundView?.frame = self.bgInitFrame
+                self.frame = self.initFrame
+            })
+            {   // 然后从父视图移除
+                (_) in
+                self.myBackgroundView?.removeFromSuperview()
+                self.removeFromSuperview()
+            }
             
             
         }
-        
-        
-        
-        
-        
-        
-        
-        
         
         
     }
-    
-    
-    
     
     
 }
@@ -120,10 +131,19 @@ extension ShopCartListUITableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = self.dequeueReusableCell(withIdentifier: "cell") as! ShopCartListTableViewCell
         cell.selectionStyle = .none
+        
+        // 根据productions修改购物车的cell 改为和商品对应的数据
+        cell.nameLabel.text! = ShopCartUIView.productions[indexPath.row]["name"] as! String
+        let count = ShopCartUIView.productions[indexPath.row]["count"] as! Int
+        cell.numLabel.text! = String(count)
+        cell.priceLabel.text! = String(ShopCartUIView.productions[indexPath.row]["price"] as! Double)
+        
         return cell
     }
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -132,7 +152,24 @@ extension ShopCartListUITableView: UITableViewDelegate, UITableViewDataSource {
     
     
     
+}
+
+// 为背景添加点击事件
+extension ShopCartListUITableView {
+    func addTapGestrueForBackground() {
+        self.myBackgroundView?.isUserInteractionEnabled = true  // 设置可交互
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(myBackgroundTapped))
+        
+        tapGesture.numberOfTouchesRequired = 1
+        self.myBackgroundView?.addGestureRecognizer(tapGesture)
+        
+    }
     
+    // 单击背景收起购物车
+    @objc func myBackgroundTapped() {
+        print("myBackgroundTapped!")
+        showShopCartList(flag: false)
+    }
     
     
 }

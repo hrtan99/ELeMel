@@ -10,6 +10,10 @@ import UIKit
 
 class ShopCartListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var numLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +25,10 @@ class ShopCartListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func addButtonPressed(_ sender: Any) {
+        
+    }
+    @IBAction func subButtonPressed(_ sender: Any) {
+        
+    }
 }

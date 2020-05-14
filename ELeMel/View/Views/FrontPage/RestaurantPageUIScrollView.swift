@@ -81,12 +81,8 @@ extension RestaurantPageUIScrollView: UIScrollViewDelegate{
             ORIGIN_OFFSET = self.contentOffset.y
             firstOffsetFlag = false
         }
-        
-//        debugPrint("self.contentOffset.y: \(self.contentOffset.y)")
+
         let yOffset = self.contentOffset.y -  originY!  // y方向偏移 需要减掉初始的偏移来修正
-//        debugPrint("scrollView offset: \(yOffset)")
-//        debugPrint("restaurantImageView y position: \(restaurantImageView!.frame.minY)")
-//        debugPrint(restaurantImageView!.frame.origin)
         
         // 手指向下滑动的情况 缩放顶部的图片
         if(yOffset <= -88){  // 实际上这里小于-88就行， 设置成44只是为了向上滑动图片有缩小的效果
@@ -95,17 +91,12 @@ extension RestaurantPageUIScrollView: UIScrollViewDelegate{
             frame.size.height = ORIGIN_HEIGHT - yOffset
             restaurantImageView!.frame = frame
         }
-//        debugPrint(detailPage!.titleView!.frame.origin)
         
         // 向上滑动 根据首页图片的位置设置导航栏透明度
         let navigatironController = UIViewController.current()?.navigationController
         if(self.contentOffset.y - ORIGIN_OFFSET! < 100){
             let alpha = (self.contentOffset.y - ORIGIN_OFFSET!) / 100
             navigatironController!.navigationBar.subviews.first!.alpha = alpha
-            
-//            debugPrint(alpha)
-            
-            
         }
         else{
             navigatironController!.navigationBar.subviews.first!.alpha = 1

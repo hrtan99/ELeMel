@@ -11,6 +11,7 @@ import UIKit
 class MealInfoViewController: UIViewController {
 
     var cell: DishesTableViewCell?
+    var superViewController: RestaurantDetailPageViewController?
     
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var subButton: UIButton!

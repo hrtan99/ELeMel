@@ -52,11 +52,7 @@ class DetailPageContentUIView: UIScrollView {
         restaurantInfoContentView?.backgroundColor = .systemGray6
         
         
-        
-//        let shopCartFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - 250 - 44 - 85, width: SCREEN_WIDTH, height: 85)
-//        print("UIScreen.main.bounds.height: \(UIScreen.main.bounds.height)" )
-//        shopCart = ShopCartUIView(frame: shopCartFrame)
-        
+    
         
         self.addSubview(dishesContentView!)
         self.addSubview(commentContentView!)
