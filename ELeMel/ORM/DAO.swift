@@ -29,7 +29,7 @@ enum DishTableField: String {
     case SaleCount = "salecount"
     case RestaurantID = "restaurantid"
     case Rates = "rate"
-    static var count: Int{ return DishTableField.Rates.hashValue + 1 }
+    static var count: Int{ return DishTableField.Rates.hashValue }
 }
 
 enum RestaurantTableField: String {
@@ -43,7 +43,7 @@ enum RestaurantTableField: String {
     case OpenTime = "opentime"
     case Rates = "rates"
     case ProductionCount = "productionnumber"
-    static var count: Int{ return RestaurantTableField.ProductionCount.hashValue + 1 }
+    static var count: Int{ return RestaurantTableField.ProductionCount.hashValue }
 }
 
 enum ImageTableField: String {
@@ -53,10 +53,10 @@ enum ImageTableField: String {
     case DishID = "dishid"
     case RestaurantID = "restaurantid"
     case ImageData = "data"
-    static var count: Int{ return ImageTableField.ImageData.hashValue + 1 }
+    static var count: Int{ return ImageTableField.ImageData.hashValue }
 }
 
-enum OrderFormTable: String {
+enum OrderFormTableField: String {
     case TableName = "orderform"
     case ID = "id"
     case TotalPrice = "totalprice"
@@ -64,7 +64,7 @@ enum OrderFormTable: String {
     case PaymentMethod = "paymentmethod"
     case UserID = "userid"
     case ReataurantID = "restaurantid"
-    static var count: Int{ return OrderFormTable.ReataurantID.hashValue + 1 }
+    static var count: Int{ return OrderFormTableField.ReataurantID.hashValue }
 }
 
 enum Order2DishTable: String {
@@ -72,17 +72,18 @@ enum Order2DishTable: String {
     case OrderID = "orderid"
     case DishID = "dishid"
     case DishCount = "dishcount"
-    static var count: Int{ return Order2DishTable.DishCount.hashValue + 1 }
+    static var count: Int{ return Order2DishTable.DishCount.hashValue }
 }
 
-enum UserTable: String {
+enum UserTableField: String {
+    case TableName = "user"
     case ID = "id"
     case Name = "username"
     case Password = "password"
     case PhoneNumber = "phonenumber"
     case Email = "email"
     case Address = "address"
-    static var count: Int{ return UserTable.Address.hashValue + 1 }
+    static var count: Int{ return UserTableField.Address.hashValue }
 }
 
 class DAO {
@@ -106,9 +107,9 @@ class DAO {
         _ = DBManager.execNoneQuerySQL(sql: createOrder2DishTable)
         _ = DBManager.execNoneQuerySQL(sql: createUserTable)
         
-//        // 检查insert语句
-        let a = ["type": "icon", "dishid": 1, "restaurantid":1, "data": UIImage(systemName: "folder")!] as [String : AnyObject]
-        insert(tableName: "image", properties: a)
+        // 检查insert语句
+//        let a = ["type": "icon", "dishid": 1, "restaurantid":1, "data": UIImage(systemName: "folder")!] as [String : AnyObject]
+//        insert(tableName: "image", properties: a)
         
         // 检查update语句
 //        let a = ["id": 12, "name": "thomas", "price": 1.5, "image": UIImage(systemName: "folder")] as [String : AnyObject]

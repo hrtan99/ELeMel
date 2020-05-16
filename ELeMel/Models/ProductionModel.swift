@@ -20,6 +20,8 @@ class ProductionModel {
     var rates: Float?                   // 好评率
     var productionPhoto: UIImage?       // 菜品图片 就1张
     
+    var imageChanged: Bool = false      // 图片修改标志
+    
     init() {
         
     }
@@ -39,7 +41,7 @@ class ProductionModel {
         self.restaurantID = dishTableEnrty?[DishTableField.RestaurantID.rawValue] as? Int
         self.rates = dishTableEnrty?[DishTableField.Rates.rawValue] as? Float
         
-        let photo = DAO.select(tableName: ImageTableField.TableName.rawValue, columns: [ImageTableField.ImageData.rawValue], condition: "id = \(id) AND type = \(ImageType.ProductionPhoto.rawValue)")?.first
+        let photo = DAO.select(tableName: ImageTableField.TableName.rawValue, columns: [ImageTableField.ImageData.rawValue], condition: "\(ImageTableField.DishID) = \(id) AND type = \(ImageType.ProductionPhoto.rawValue)")?.first
         self.productionPhoto = photo?[ImageTableField.ImageData.rawValue] as? UIImage
         
     }
@@ -47,23 +49,40 @@ class ProductionModel {
     // 保存到数据库中
     func saveToDB() {
         // 新创建的用插入语句 否则用更新语句
-        var p = [String: AnyObject]()
-        for _ in 0 ..< DishTableField.count {
+        var p = [
+            DishTableField.Name.rawValue: self.name!,
+            DishTableField.Price.rawValue: self.price!,
+            DishTableField.Ingredients.rawValue: self.ingredients!,
+            DishTableField.Infomation.rawValue: self.info!,
+            DishTableField.SaleCount.rawValue: self.saleCount!,
+            DishTableField.RestaurantID.rawValue: self.restaurantID!,
+            DishTableField.Rates.rawValue: self.rates!
+            ] as [String : AnyObject]
+        
+        if self.ID != nil {
             p.updateValue(self.ID as AnyObject, forKey: DishTableField.ID.rawValue)
         }
+        _ = DAO.insert(tableName: DishTableField.TableName.rawValue, properties: p)
+        // 如果刚刚是新加入的菜品，还要获取ID来保存图片
         if self.ID == nil {
+            // 获取刚刚插入的菜品的ID
+            let temp = DAO.select(tableName: DishTableField.Name.rawValue, columns: [DishTableField.ID.rawValue], condition: "name = \(self.name!)")?.first
+            let id = temp![DishTableField.ID.rawValue] as! Int
+            self.ID = id        // 更新ID
+            let image = [
+                ImageTableField.ImageType.rawValue: ImageType.ProductionPhoto.rawValue,
+                ImageTableField.DishID.rawValue: self.ID!,
+                ImageTableField.RestaurantID.rawValue: self.restaurantID!,
+                ImageTableField.ImageData.rawValue: self.productionPhoto!
+            ] as [String: AnyObject]
+            // 插入新图片
+            _ = DAO.insert(tableName: ImageTableField.TableName.rawValue, properties: image)
             
-            _ = DAO.insert(tableName: DishTableField.TableName.rawValue, properties: p)
         }
-        else {
-            
-            
-            
+        else if self.imageChanged {
+            // 更新图片
+            _ = DAO.update(tableName: ImageTableField.TableName.rawValue, properties: [ImageTableField.ImageData.rawValue: self.productionPhoto as AnyObject], condition: "\(DishTableField.ID.rawValue) = \(ImageTableField.DishID.rawValue)")
         }
-        
-        
-        
-        
         
         
     }
