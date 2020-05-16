@@ -56,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="1039" y="-786"/>
         </scene>
-        <!--Root View Controller-->
+        <!--发现-->
         <scene sceneID="Hfm-iv-Itp">
             <objects>
                 <tableViewController id="UJI-NF-uAg" sceneMemberID="viewController">
@@ -79,7 +79,7 @@
                             <outlet property="delegate" destination="UJI-NF-uAg" id="adL-go-fN9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Hh7-8m-vcF"/>
+                    <navigationItem key="navigationItem" title="发现" id="Hh7-8m-vcF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whh-rM-by7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -216,11 +216,11 @@
             </objects>
             <point key="canvasLocation" x="25" y="665"/>
         </scene>
-        <!--Item-->
+        <!--发现-->
         <scene sceneID="4nj-fL-2tD">
             <objects>
                 <navigationController id="5VK-xl-iOc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Item" image="safari" catalog="system" id="WC1-xe-81U"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="发现" image="safari" catalog="system" id="WC1-xe-81U"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ifw-2J-RKm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

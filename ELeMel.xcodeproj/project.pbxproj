@@ -10,7 +10,7 @@
 		E937E9E32466AA8D00C897B2 /* DishesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9E12466AA8D00C897B2 /* DishesTableViewCell.swift */; };
 		E937E9E42466AA8D00C897B2 /* DishesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E937E9E22466AA8D00C897B2 /* DishesTableViewCell.xib */; };
 		E937E9E62466B24B00C897B2 /* DishesListUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9E52466B24B00C897B2 /* DishesListUITableView.swift */; };
-		E937E9EA2466DD3500C897B2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9E92466DD3500C897B2 /* Extensions.swift */; };
+		E937E9EA2466DD3500C897B2 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9E92466DD3500C897B2 /* UIViewControllerExtension.swift */; };
 		E937E9EC2466E74100C897B2 /* ShopCartUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9EB2466E74100C897B2 /* ShopCartUIView.swift */; };
 		E937E9F02466E7D100C897B2 /* ShopCartUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E937E9EF2466E7D100C897B2 /* ShopCartUIView.xib */; };
 		E937E9F32468479200C897B2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E937E9F12468479200C897B2 /* CommentTableViewCell.swift */; };
@@ -20,6 +20,10 @@
 		E93E903F246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E903E246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift */; };
 		E93E9041246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E9040246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift */; };
 		E93E904324617A2300D0EFE8 /* UserInfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */; };
+		E93F6238246E96A800A8DDF4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6237246E96A800A8DDF4 /* UserModel.swift */; };
+		E93F623E246E999A00A8DDF4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */; };
+		E93F6240246E9CE600A8DDF4 /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */; };
+		E93F6242246EF29300A8DDF4 /* ToolClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6241246EF29300A8DDF4 /* ToolClass.swift */; };
 		E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */; };
 		E9407AA2246AFEEC00A3413B /* MealInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */; };
 		E9407AAC246C437200A3413B /* ShopCartListUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */; };
@@ -27,6 +31,9 @@
 		E9407AB0246C440B00A3413B /* ShopCartListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AAE246C440B00A3413B /* ShopCartListTableViewCell.xib */; };
 		E9407AB2246D88C800A3413B /* ShopCartListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AB1246D88C800A3413B /* ShopCartListHeaderView.swift */; };
 		E9407AB4246D891100A3413B /* ShopCartListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AB3246D891100A3413B /* ShopCartListHeaderView.xib */; };
+		E9407ABA246D9D9F00A3413B /* OrderPageUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AB9246D9D9F00A3413B /* OrderPageUIScrollView.swift */; };
+		E9407ABC246D9DDD00A3413B /* OrderPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407ABB246D9DDD00A3413B /* OrderPageViewController.swift */; };
+		E9407ABE246DB4A000A3413B /* paymentInfoCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407ABD246DB4A000A3413B /* paymentInfoCardUIView.swift */; };
 		E943CD44246933CD0076E8CE /* RestaurantInfoCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */; };
 		E943CD46246933E70076E8CE /* RestaurantInfoCardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */; };
 		E943CD4C24693BD30076E8CE /* DetailPageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */; };
@@ -49,6 +56,10 @@
 		E979543A2459366500D861FE /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97954392459366500D861FE /* RootTabBarViewController.swift */; };
 		E979543E2459706B00D861FE /* FrontPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979543D2459706B00D861FE /* FrontPageTableViewController.swift */; };
 		E9795447245974A400D861FE /* OrderFormPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9795446245974A400D861FE /* OrderFormPageTableViewController.swift */; };
+		E9ED3488246E58EA00C3E5D0 /* ProductionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED3487246E58EA00C3E5D0 /* ProductionModel.swift */; };
+		E9ED348A246E5C2E00C3E5D0 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED3489246E5C2E00C3E5D0 /* RestaurantModel.swift */; };
+		E9ED348C246E626C00C3E5D0 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED348B246E626C00C3E5D0 /* OrderModel.swift */; };
+		E9ED348F246E646B00C3E5D0 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED348E246E646B00C3E5D0 /* DAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +83,7 @@
 		E937E9E12466AA8D00C897B2 /* DishesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesTableViewCell.swift; sourceTree = "<group>"; };
 		E937E9E22466AA8D00C897B2 /* DishesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishesTableViewCell.xib; sourceTree = "<group>"; };
 		E937E9E52466B24B00C897B2 /* DishesListUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesListUITableView.swift; sourceTree = "<group>"; };
-		E937E9E92466DD3500C897B2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E937E9E92466DD3500C897B2 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		E937E9EB2466E74100C897B2 /* ShopCartUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartUIView.swift; sourceTree = "<group>"; };
 		E937E9EF2466E7D100C897B2 /* ShopCartUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCartUIView.xib; sourceTree = "<group>"; };
 		E937E9F12468479200C897B2 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +93,11 @@
 		E93E903E246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormPageNavigationViewController.swift; sourceTree = "<group>"; };
 		E93E9040246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPageNavigationViewController.swift; sourceTree = "<group>"; };
 		E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPageTableViewController.swift; sourceTree = "<group>"; };
+		E93F6237246E96A800A8DDF4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E93F6239246E992700A8DDF4 /* ELeMel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ELeMel-Bridging-Header.h"; sourceTree = "<group>"; };
+		E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
+		E93F6241246EF29300A8DDF4 /* ToolClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolClass.swift; sourceTree = "<group>"; };
 		E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealInfoViewController.swift; sourceTree = "<group>"; };
 		E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealInfoViewController.xib; sourceTree = "<group>"; };
 		E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListUITableView.swift; sourceTree = "<group>"; };
@@ -89,6 +105,9 @@
 		E9407AAE246C440B00A3413B /* ShopCartListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCartListTableViewCell.xib; sourceTree = "<group>"; };
 		E9407AB1246D88C800A3413B /* ShopCartListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListHeaderView.swift; sourceTree = "<group>"; };
 		E9407AB3246D891100A3413B /* ShopCartListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCartListHeaderView.xib; sourceTree = "<group>"; };
+		E9407AB9246D9D9F00A3413B /* OrderPageUIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageUIScrollView.swift; sourceTree = "<group>"; };
+		E9407ABB246D9DDD00A3413B /* OrderPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPageViewController.swift; sourceTree = "<group>"; };
+		E9407ABD246DB4A000A3413B /* paymentInfoCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymentInfoCardUIView.swift; sourceTree = "<group>"; };
 		E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoCardUIView.swift; sourceTree = "<group>"; };
 		E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantInfoCardUIView.xib; sourceTree = "<group>"; };
 		E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageUIView.swift; sourceTree = "<group>"; };
@@ -117,6 +136,10 @@
 		E97954392459366500D861FE /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
 		E979543D2459706B00D861FE /* FrontPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontPageTableViewController.swift; sourceTree = "<group>"; };
 		E9795446245974A400D861FE /* OrderFormPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormPageTableViewController.swift; sourceTree = "<group>"; };
+		E9ED3487246E58EA00C3E5D0 /* ProductionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionModel.swift; sourceTree = "<group>"; };
+		E9ED3489246E5C2E00C3E5D0 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		E9ED348B246E626C00C3E5D0 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		E9ED348E246E646B00C3E5D0 /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93F623E246E999A00A8DDF4 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,9 +171,18 @@
 		E937E9E82466DCFD00C897B2 /* ToolClass */ = {
 			isa = PBXGroup;
 			children = (
-				E937E9E92466DD3500C897B2 /* Extensions.swift */,
+				E937E9E92466DD3500C897B2 /* UIViewControllerExtension.swift */,
+				E93F6241246EF29300A8DDF4 /* ToolClass.swift */,
 			);
 			path = ToolClass;
+			sourceTree = "<group>";
+		};
+		E93F623C246E999A00A8DDF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E9407AA3246BA55800A3413B /* Views */ = {
@@ -165,22 +198,9 @@
 		E9407AA4246BA5B300A3413B /* FrontPage */ = {
 			isa = PBXGroup;
 			children = (
-				E937E9EB2466E74100C897B2 /* ShopCartUIView.swift */,
-				E937E9EF2466E7D100C897B2 /* ShopCartUIView.xib */,
-				E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */,
-				E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */,
-				E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */,
-				E943CD4D24693C190076E8CE /* DetailPageTitleUIView.swift */,
-				E943CD5124693C620076E8CE /* DetailPageTitleUIView.xib */,
-				E943CD4F24693C420076E8CE /* DetailPageContentUIView.swift */,
-				E937E9E52466B24B00C897B2 /* DishesListUITableView.swift */,
-				E943CD5324693F620076E8CE /* CommentListUITableView.swift */,
-				E943CD552469453E0076E8CE /* RestaurantInfoUIView.swift */,
-				E943CD57246945580076E8CE /* RestaurantInfoUIView.xib */,
-				E937E9F72468640100C897B2 /* RestaurantPageUIScrollView.swift */,
-				E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */,
-				E9407AB1246D88C800A3413B /* ShopCartListHeaderView.swift */,
-				E9407AB3246D891100A3413B /* ShopCartListHeaderView.xib */,
+				E9407AB8246D9D3800A3413B /* OrderPage */,
+				E9407AB6246D9CBD00A3413B /* ShopCart */,
+				E9407AB7246D9D1A00A3413B /* RestaurantPage */,
 			);
 			path = FrontPage;
 			sourceTree = "<group>";
@@ -197,6 +217,53 @@
 			children = (
 			);
 			path = UserInfoPage;
+			sourceTree = "<group>";
+		};
+		E9407AB5246D9C9200A3413B /* DetailPage */ = {
+			isa = PBXGroup;
+			children = (
+				E943CD4B24693BD30076E8CE /* DetailPageUIView.swift */,
+				E943CD4D24693C190076E8CE /* DetailPageTitleUIView.swift */,
+				E943CD5124693C620076E8CE /* DetailPageTitleUIView.xib */,
+				E943CD4F24693C420076E8CE /* DetailPageContentUIView.swift */,
+				E937E9E52466B24B00C897B2 /* DishesListUITableView.swift */,
+				E943CD5324693F620076E8CE /* CommentListUITableView.swift */,
+				E943CD552469453E0076E8CE /* RestaurantInfoUIView.swift */,
+				E943CD57246945580076E8CE /* RestaurantInfoUIView.xib */,
+			);
+			path = DetailPage;
+			sourceTree = "<group>";
+		};
+		E9407AB6246D9CBD00A3413B /* ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				E937E9EB2466E74100C897B2 /* ShopCartUIView.swift */,
+				E937E9EF2466E7D100C897B2 /* ShopCartUIView.xib */,
+				E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */,
+				E9407AB1246D88C800A3413B /* ShopCartListHeaderView.swift */,
+				E9407AB3246D891100A3413B /* ShopCartListHeaderView.xib */,
+			);
+			path = ShopCart;
+			sourceTree = "<group>";
+		};
+		E9407AB7246D9D1A00A3413B /* RestaurantPage */ = {
+			isa = PBXGroup;
+			children = (
+				E9407AB5246D9C9200A3413B /* DetailPage */,
+				E943CD43246933CD0076E8CE /* RestaurantInfoCardUIView.swift */,
+				E943CD45246933E70076E8CE /* RestaurantInfoCardUIView.xib */,
+				E937E9F72468640100C897B2 /* RestaurantPageUIScrollView.swift */,
+			);
+			path = RestaurantPage;
+			sourceTree = "<group>";
+		};
+		E9407AB8246D9D3800A3413B /* OrderPage */ = {
+			isa = PBXGroup;
+			children = (
+				E9407AB9246D9D9F00A3413B /* OrderPageUIScrollView.swift */,
+				E9407ABD246DB4A000A3413B /* paymentInfoCardUIView.swift */,
+			);
+			path = OrderPage;
 			sourceTree = "<group>";
 		};
 		E96248662464237D00475CF6 /* View */ = {
@@ -254,6 +321,7 @@
 				E979541E2459356000D861FE /* ELeMelTests */,
 				E97954292459356000D861FE /* ELeMelUITests */,
 				E97954062459355F00D861FE /* Products */,
+				E93F623C246E999A00A8DDF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -276,6 +344,8 @@
 				E979540E2459355F00D861FE /* Main.storyboard */,
 				E97954132459356000D861FE /* LaunchScreen.storyboard */,
 				E97954162459356000D861FE /* Info.plist */,
+				E9ED348D246E644E00C3E5D0 /* ORM */,
+				E9ED3483246E583100C3E5D0 /* Models */,
 				E937E9E82466DCFD00C897B2 /* ToolClass */,
 				E96248662464237D00475CF6 /* View */,
 				E97954382459359900D861FE /* Controller */,
@@ -315,11 +385,12 @@
 		E97954402459728000D861FE /* FrontPage */ = {
 			isa = PBXGroup;
 			children = (
-				E979543D2459706B00D861FE /* FrontPageTableViewController.swift */,
 				E93E903C246179A200D0EFE8 /* FrontPageNavigationViewController.swift */,
+				E979543D2459706B00D861FE /* FrontPageTableViewController.swift */,
 				E962486F2464EF0E00475CF6 /* RestaurantDetailPageViewController.swift */,
 				E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */,
 				E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */,
+				E9407ABB246D9DDD00A3413B /* OrderPageViewController.swift */,
 			);
 			path = FrontPage;
 			sourceTree = "<group>";
@@ -340,6 +411,27 @@
 				E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */,
 			);
 			path = UserInfoPage;
+			sourceTree = "<group>";
+		};
+		E9ED3483246E583100C3E5D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9ED3487246E58EA00C3E5D0 /* ProductionModel.swift */,
+				E9ED3489246E5C2E00C3E5D0 /* RestaurantModel.swift */,
+				E9ED348B246E626C00C3E5D0 /* OrderModel.swift */,
+				E93F6237246E96A800A8DDF4 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E9ED348D246E644E00C3E5D0 /* ORM */ = {
+			isa = PBXGroup;
+			children = (
+				E9ED348E246E646B00C3E5D0 /* DAO.swift */,
+				E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */,
+				E93F6239246E992700A8DDF4 /* ELeMel-Bridging-Header.h */,
+			);
+			path = ORM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +502,7 @@
 				TargetAttributes = {
 					E97954042459355F00D861FE = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					E979541A2459356000D861FE = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -489,11 +582,18 @@
 				E9407AB2246D88C800A3413B /* ShopCartListHeaderView.swift in Sources */,
 				E93E904324617A2300D0EFE8 /* UserInfoPageTableViewController.swift in Sources */,
 				E97954092459355F00D861FE /* AppDelegate.swift in Sources */,
+				E9ED348F246E646B00C3E5D0 /* DAO.swift in Sources */,
 				E96248702464EF0E00475CF6 /* RestaurantDetailPageViewController.swift in Sources */,
+				E93F6238246E96A800A8DDF4 /* UserModel.swift in Sources */,
+				E9407ABE246DB4A000A3413B /* paymentInfoCardUIView.swift in Sources */,
+				E9407ABA246D9D9F00A3413B /* OrderPageUIScrollView.swift in Sources */,
 				E943CD5024693C420076E8CE /* DetailPageContentUIView.swift in Sources */,
+				E9ED348A246E5C2E00C3E5D0 /* RestaurantModel.swift in Sources */,
 				E943CD4E24693C190076E8CE /* DetailPageTitleUIView.swift in Sources */,
 				E93E903D246179A200D0EFE8 /* FrontPageNavigationViewController.swift in Sources */,
+				E93F6240246E9CE600A8DDF4 /* SqliteManager.swift in Sources */,
 				E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */,
+				E9ED3488246E58EA00C3E5D0 /* ProductionModel.swift in Sources */,
 				E937E9E62466B24B00C897B2 /* DishesListUITableView.swift in Sources */,
 				E93E903F246179D100D0EFE8 /* OrderFormPageNavigationViewController.swift in Sources */,
 				E9795447245974A400D861FE /* OrderFormPageTableViewController.swift in Sources */,
@@ -503,12 +603,15 @@
 				E943CD5424693F620076E8CE /* CommentListUITableView.swift in Sources */,
 				E943CD4C24693BD30076E8CE /* DetailPageUIView.swift in Sources */,
 				E9407AAF246C440B00A3413B /* ShopCartListTableViewCell.swift in Sources */,
-				E937E9EA2466DD3500C897B2 /* Extensions.swift in Sources */,
+				E937E9EA2466DD3500C897B2 /* UIViewControllerExtension.swift in Sources */,
 				E937E9F32468479200C897B2 /* CommentTableViewCell.swift in Sources */,
 				E979543A2459366500D861FE /* RootTabBarViewController.swift in Sources */,
 				E937E9EC2466E74100C897B2 /* ShopCartUIView.swift in Sources */,
 				E979543E2459706B00D861FE /* FrontPageTableViewController.swift in Sources */,
+				E93F6242246EF29300A8DDF4 /* ToolClass.swift in Sources */,
 				E979540B2459355F00D861FE /* SceneDelegate.swift in Sources */,
+				E9407ABC246D9DDD00A3413B /* OrderPageViewController.swift in Sources */,
+				E9ED348C246E626C00C3E5D0 /* OrderModel.swift in Sources */,
 				E943CD44246933CD0076E8CE /* RestaurantInfoCardUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +785,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SW7PP666A7;
 				INFOPLIST_FILE = ELeMel/Info.plist;
@@ -691,6 +795,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tanhuiri-gmail.com.ELeMel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ELeMel/ORM/ELeMel-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -700,6 +806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SW7PP666A7;
 				INFOPLIST_FILE = ELeMel/Info.plist;
@@ -709,6 +816,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tanhuiri-gmail.com.ELeMel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ELeMel/ORM/ELeMel-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

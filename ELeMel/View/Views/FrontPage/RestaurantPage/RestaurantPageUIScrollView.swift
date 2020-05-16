@@ -72,7 +72,7 @@ class RestaurantPageUIScrollView: UIScrollView {
 
 }
 
-extension RestaurantPageUIScrollView: UIScrollViewDelegate{
+extension RestaurantPageUIScrollView: UIScrollViewDelegate {
     // 监听滑动事件
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         

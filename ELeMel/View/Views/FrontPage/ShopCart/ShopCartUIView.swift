@@ -26,9 +26,6 @@ class ShopCartUIView: UIView {
     
     @IBOutlet weak var totalPriceLabel: UILabel!
     
-    
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,6 +45,13 @@ class ShopCartUIView: UIView {
 //        fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // 结算按钮按下，进入提交订单页面
+    @IBAction func createOrderButtonPressed(_ sender: Any) {
+        let createOrderVC = OrderPageViewController()
+        UIViewController.current()?.navigationController?.pushViewController(createOrderVC, animated: true)
+    }
+    
     override class func awakeFromNib() {
         
     }
@@ -61,7 +65,8 @@ class ShopCartUIView: UIView {
         
     }
     
-    // 单击时触发的函数
+    
+    // 购物车单击时触发的函数
     @objc func tapGestureAction() {
         
         // 如果还没有选择商品就点购物车，弹窗提醒一下
