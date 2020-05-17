@@ -112,11 +112,12 @@ class SQLiteManager:NSObject{
          4. statement： 语句句柄，据此获得查询结果，需要sqlite3_finalize来释放内存
          5. _ pzTail： 未使用的指针地址，通常为nil
          */
+//        print("exec \(sql)")
         if sqlite3_prepare_v2(dataBase, sql, -1, &statement, nil) != SQLITE_OK{
             
             //失败释放内存
             sqlite3_finalize(statement)
-            print("exec\(sql)failed\n")
+            print("exec \(sql) failed\n")
             let errmsg = sqlite3_errmsg(dataBase)
             if errmsg != nil{
                 print(errmsg!)

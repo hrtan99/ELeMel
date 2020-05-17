@@ -18,7 +18,7 @@ enum ImageType: String {
     case ProductionPhoto = "productionPhoto"
     static var count: Int{ return ImageType.ProductionPhoto.hashValue + 1 }
 }
-
+// 表类型
 enum DishTableField: String {
     case TableName = "dish"
     case ID = "id"
@@ -28,7 +28,7 @@ enum DishTableField: String {
     case Infomation = "info"
     case SaleCount = "salecount"
     case RestaurantID = "restaurantid"
-    case Rates = "rate"
+    case Rates = "rates"
     static var count: Int{ return DishTableField.Rates.hashValue }
 }
 
@@ -42,7 +42,7 @@ enum RestaurantTableField: String {
     case PhoneNumber = "phonenumber"
     case OpenTime = "opentime"
     case Rates = "rates"
-    case ProductionCount = "productionnumber"
+    case ProductionCount = "productioncount"
     static var count: Int{ return RestaurantTableField.ProductionCount.hashValue }
 }
 
@@ -67,12 +67,12 @@ enum OrderFormTableField: String {
     static var count: Int{ return OrderFormTableField.ReataurantID.hashValue }
 }
 
-enum Order2DishTable: String {
+enum Order2DishTableField: String {
     case TableName = "order2dish"
     case OrderID = "orderid"
     case DishID = "dishid"
     case DishCount = "dishcount"
-    static var count: Int{ return Order2DishTable.DishCount.hashValue }
+    static var count: Int{ return Order2DishTableField.DishCount.hashValue }
 }
 
 enum UserTableField: String {
@@ -91,9 +91,9 @@ class DAO {
     
     static func initDB() {
         DBManager.openDB()
-        
+        clearDB()
         let createDishTable = "CREATE TABLE IF NOT EXISTS dish('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'name' TEXT NOT NULL, 'price' FLOAT NOT NULL, 'ingredient' TEXT NOT NULL, 'info' TEXT NOT NULL, 'salecount' INT NOT NULL, 'restaurantid' INT NOT NULL, 'rates' FLOAT NOT NULL);"
-        let createRestaurantTable = "CREATE TABLE IF NOT EXISTS restaurant('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'name' TEXT NOT NULL, 'notice' TEXT NOT NULL, 'type' TEXT NOT NULL, 'address' TEXT NOT NULL, 'phonenumber' TEXT NOT NULL, 'opentime' TEXT NOT NULL, 'rates' FLOAT NOT NULL, ‘productionnumber’ INT NOT NULL);"
+        let createRestaurantTable = "CREATE TABLE IF NOT EXISTS restaurant('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'name' TEXT NOT NULL, 'notice' TEXT NOT NULL, 'type' TEXT NOT NULL, 'address' TEXT NOT NULL, 'phonenumber' TEXT NOT NULL, 'opentime' TEXT NOT NULL, 'rates' FLOAT NOT NULL, 'productioncount' INT NOT  NULL);"
         let createImageTable = "CREATE TABLE IF NOT EXISTS image('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'type' TEXT NOT NULL, 'dishid' INT NOT NULL, 'restaurantid' INT NOT NULL, 'data' BLOB NOT NULL);"
         let createOrderTable = "CREATE TABLE IF NOT EXISTS orderform('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'totalprice' FLOAT NOT NULL, 'createdtime' TEXT NOT NULL, 'paymentmethod' TEXT NOT NULL, 'userid' INT NOT NULL, 'restaurantid' INT NOT NULL);"
         let createOrder2DishTable = "CREATE TABLE IF NOT EXISTS order2dish('orderid' INT NOT NULL, 'dishid' INT NOT NULL, 'dishcount' INT NOT NULL, PRIMARY KEY(orderid, dishid));"
@@ -119,9 +119,131 @@ class DAO {
         // 检查delete语句
 //        delete(tableName: "image")
         
+//        checkProductionModel()
+        checkRestaurantModel()
+//        checkOrderModel()
+//        checkUserModel()
         // 检查查询语句
         select(tableName: "image")
+        select(tableName: "restaurant")
+        select(tableName: "dish")
+        
+        
         DBManager.closeDB()
+    }
+    
+    static func checkProductionModel() {
+        let production = ProductionModel()
+        production.name = "thomas"
+        production.price = 1.85
+        production.ingredients = "牛肉"
+        production.info = "大学生"
+        production.saleCount = 99
+        production.restaurantID = 1
+        production.rates = 0.99
+        production.productionPhoto = UIImage(named: "yabo")
+        
+        production.saveToDB()
+        debugPrint(production.ID!)
+        debugPrint(production)
+        
+    }
+    
+    static func checkRestaurantModel() {
+        var res = RestaurantModel()
+        res.name = "绝味鸭脖店"
+        res.notice = "满减优惠"
+        res.category = "快餐"
+        res.address = "河西路"
+        res.phoneNum = "110"
+        res.openTime = "8:30-20:00"
+        res.rates = 4.7
+        res.productionCount = 2
+        res.restaurantIcon = UIImage(named: "yabo")
+        res.restaurantPoster = UIImage(named: "yabo")
+        res.restaurantPhoto = [UIImage(named: "yabo")!]
+        
+        // 保存了以后才有ID
+        res.saveToDB()
+
+        
+        let p1 = ProductionModel()
+        p1.name = "thomas"
+        p1.price = 1.85
+        p1.ingredients = "牛肉"
+        p1.info = "大学生"
+        p1.saleCount = 99
+        p1.restaurantID = res.ID
+        p1.rates = 0.99
+        p1.productionPhoto = UIImage(named: "yabo")
+        
+        let p2 = ProductionModel()
+        p2.name = "ali"
+        p2.price = 1.85
+        p2.ingredients = "牛肉"
+        p2.info = "大学生"
+        p2.saleCount = 99
+        p2.restaurantID = res.ID
+        p2.rates = 0.99
+        p2.productionPhoto = UIImage(named: "yabo")
+        
+        res.dishes = [p1, p2]
+        res.saveDishesToDB()
+        res = RestaurantModel(id: 1)
+        
+        debugPrint(res)
+        debugPrint(res.productionCount)
+    }
+    
+    static func checkOrderModel() {
+        let order = OrderModel()
+        order.totalPrice = 99.9
+        order.createdTime = "10:30"
+        order.paymentMethod = "支付宝"
+        order.userId = 10010
+        order.restaurantID = 1
+        order.dishesInfo = [
+            1: 10,
+            2: 30
+        ]
+        do {
+            try order.saveToDB()
+        }
+        catch {
+            print(Error.self)
+        }
+        
+        print("it's order:")
+        print(order)
+        let id = order.ID!
+        let order2 = OrderModel(id: id)
+        print("it's order2:")
+        print(order2)
+        
+    }
+    
+    static func checkUserModel() {
+        let user = UserModel()
+        user.userName = "root"
+        user.userPassword = "123"
+        user.phoneNumber = "123456798"
+        user.email = "@whu.edu.cn"
+        user.address = "河西路185号"
+        
+        user.saveToDB()
+        debugPrint(DAO.select(tableName: "user"))
+    }
+    
+    
+    
+    static func clearDB() {
+        dropTable(tableName: "dish")
+        dropTable(tableName: "image")
+        dropTable(tableName: "restaurant")
+        dropTable(tableName: "user")
+        dropTable(tableName: "orderform")
+        dropTable(tableName: "order2dish")
+        
     }
     
     // MARK: 生成标准的sql语句，并调用sqlManager的接口执行
@@ -251,6 +373,10 @@ class DAO {
             return result
         }
         
+    }
+    
+    static func dropTable(tableName: String) {
+        _ = DBManager.execNoneQuerySQL(sql: "DROP TABLE \(tableName);")
     }
     
     // 将Anyobject转换为String类型

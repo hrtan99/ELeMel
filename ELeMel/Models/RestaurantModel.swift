@@ -22,6 +22,8 @@ class RestaurantModel {
     var restaurantIcon: UIImage?     // 餐馆的图标
     var restaurantPhoto: [UIImage]?  // 餐馆的图片
     var restaurantPoster: UIImage?   // 餐馆首页的海报
+    var dishes: [ProductionModel]?   // 餐馆的菜品
+
     
     private var isNewInstance: Bool  // 是否是新创建的餐馆
     private var isChanged:Bool = false
@@ -35,9 +37,24 @@ class RestaurantModel {
         loadFromDB(id: id)
     }
     
+    func loadDishes() {
+        self.dishes = [ProductionModel]()
+        // 获得所有餐馆id对应的表项
+        let entries = DAO.select(tableName: DishTableField.TableName.rawValue, columns: [DishTableField.ID.rawValue], condition: "\(DishTableField.RestaurantID.rawValue) = \(self.ID!)")
+        for entry in entries! {
+            let id = entry[DishTableField.ID.rawValue] as! Int
+            let production = ProductionModel(id: id)
+            self.dishes?.append(production)
+        }
+        
+        print("restaurant's dishes:")
+        debugPrint(self.dishes!)
+    }
+    
+    
     // 从数据库加载的函数私有化
     private func loadFromDB(id: Int) {
-        let tableEntry = DAO.select(tableName: RestaurantTableField.ID.rawValue, columns: nil, condition: "id = \(id)")?.first
+        let tableEntry = DAO.select(tableName: RestaurantTableField.TableName.rawValue, columns: nil, condition: "id = \(id)")?.first
         
         
         self.ID = tableEntry?[RestaurantTableField.ID.rawValue] as? Int
@@ -70,13 +87,16 @@ class RestaurantModel {
                 // 这是菜品图片的情况
             }
         }
-
         
+        // 加载菜品
+        loadDishes()
     }
     
     // 保存到数据库中
     func saveToDB() {
         if isNewInstance {
+            // 修改属性
+            isNewInstance = false
             let restaurant = [
                 RestaurantTableField.Name.rawValue: self.name!,
                 RestaurantTableField.Notice.rawValue: self.notice!,
@@ -88,6 +108,11 @@ class RestaurantModel {
                 RestaurantTableField.ProductionCount.rawValue: self.productionCount!
             ] as [String : AnyObject]
             _ = DAO.insert(tableName: RestaurantTableField.TableName.rawValue, properties: restaurant)
+            
+            // 更新ID
+            let entry = DAO.select(tableName: RestaurantTableField.TableName.rawValue, columns: [RestaurantTableField.ID.rawValue], condition: "\(RestaurantTableField.Name.rawValue) = \(ToolClass.addSingleQuotes(str: self.name!)) AND \( RestaurantTableField.Notice.rawValue) = \(ToolClass.addSingleQuotes(str: self.notice!))")?.first
+            self.ID = entry?[RestaurantTableField.ID.rawValue] as? Int
+
             
             let iconImage = [
                 ImageTableField.ImageType.rawValue: ImageType.RestaurantIcon.rawValue,
@@ -106,7 +131,7 @@ class RestaurantModel {
             
             for i in 0 ..< self.restaurantPhoto!.count {
                 let Image = [
-                    ImageTableField.ImageType.rawValue: ImageType.ProductionPhoto.rawValue,
+                    ImageTableField.ImageType.rawValue: ImageType.RestaurantPhoto.rawValue,
                     ImageTableField.DishID.rawValue: -1,
                     ImageTableField.RestaurantID.rawValue: self.ID!,
                     ImageTableField.ImageData.rawValue: self.restaurantPhoto![i]
@@ -114,8 +139,8 @@ class RestaurantModel {
                 
                 _ = DAO.insert(tableName: ImageTableField.TableName.rawValue, properties: Image)
             }
-            
-            
+
+//            saveDishesToDB()
         }
         else {
             // 不是新的数据 那么只有修改了才写回数据库
@@ -146,7 +171,7 @@ class RestaurantModel {
                     ImageTableField.RestaurantID.rawValue: self.ID!,
                     ImageTableField.ImageData.rawValue: self.restaurantPoster!
                 ] as [String : AnyObject]
-                _ = DAO.update(tableName: ImageTableField.TableName.rawValue, properties: posterImage, condition: "\(ImageTableField.RestaurantID.rawValue) = \(self.ID!)")
+                _ = DAO.update(tableName: ImageTableField.TableName.rawValue, properties: posterImage, condition: "\(ToolClass.addSingleQuotes(str: ImageTableField.RestaurantID.rawValue)) = \(self.ID!)")
                 
                 for i in 0 ..< self.restaurantPhoto!.count {
                     let Image = [
@@ -156,12 +181,23 @@ class RestaurantModel {
                         ImageTableField.ImageData.rawValue: self.restaurantPhoto![i]
                     ] as [String : AnyObject]
                     
-                    _ = DAO.update(tableName: ImageTableField.TableName.rawValue, properties: Image, condition: "\(ImageTableField.RestaurantID.rawValue) = \(self.ID!)")
+                    _ = DAO.update(tableName: ImageTableField.TableName.rawValue, properties: Image, condition: "\(ToolClass.addSingleQuotes(str: ImageTableField.RestaurantID.rawValue)) = \(self.ID!)")
                 }
+                
+                saveDishesToDB()
             }
         }
         
     }
+    
+    
+     func saveDishesToDB() {
+        for i in 0 ..< self.dishes!.count {
+            self.dishes![i].saveToDB()
+        }
+        
+    }
+    
     
     
 }

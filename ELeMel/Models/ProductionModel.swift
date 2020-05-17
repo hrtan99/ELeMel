@@ -41,7 +41,8 @@ class ProductionModel {
         self.restaurantID = dishTableEnrty?[DishTableField.RestaurantID.rawValue] as? Int
         self.rates = dishTableEnrty?[DishTableField.Rates.rawValue] as? Float
         
-        let photo = DAO.select(tableName: ImageTableField.TableName.rawValue, columns: [ImageTableField.ImageData.rawValue], condition: "\(ImageTableField.DishID) = \(id) AND type = \(ImageType.ProductionPhoto.rawValue)")?.first
+        // 记载图片
+        let photo = DAO.select(tableName: ImageTableField.TableName.rawValue, columns: [ImageTableField.ImageData.rawValue], condition: "\(ImageTableField.DishID) = \(id) AND type = \(ToolClass.addSingleQuotes(str: ImageType.ProductionPhoto.rawValue))")?.first
         self.productionPhoto = photo?[ImageTableField.ImageData.rawValue] as? UIImage
         
     }
@@ -66,7 +67,7 @@ class ProductionModel {
         // 如果刚刚是新加入的菜品，还要获取ID来保存图片
         if self.ID == nil {
             // 获取刚刚插入的菜品的ID
-            let temp = DAO.select(tableName: DishTableField.Name.rawValue, columns: [DishTableField.ID.rawValue], condition: "name = \(self.name!)")?.first
+            let temp = DAO.select(tableName: DishTableField.TableName.rawValue, columns: [DishTableField.ID.rawValue], condition: "name = \(ToolClass.addSingleQuotes(str: self.name!))")?.first
             let id = temp![DishTableField.ID.rawValue] as! Int
             self.ID = id        // 更新ID
             let image = [
