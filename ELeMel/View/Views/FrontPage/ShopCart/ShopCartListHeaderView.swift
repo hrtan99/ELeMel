@@ -17,6 +17,7 @@ class ShopCartListHeaderView: UIView {
         // Drawing code
     }
     */
+    var shopList: ShopCartListUITableView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,4 +32,15 @@ class ShopCartListHeaderView: UIView {
         super.init(coder: coder)
     }
     
+    @IBAction func removeAll(_ sender: Any) {
+        // 调用购物车列表中所有cell的subButton函数来清空
+        for i in 0 ..< ShopCartListUITableView.cells.count {
+            for _ in 0 ..< ShopCartListUITableView.cells[i].num! {
+                ShopCartListUITableView.cells[i].subButtonPressed(self)
+            }
+        }
+        (self.superview?.superview as! ShopCartListUITableView).showShopCartList(flag: false)
+        print("ShopCartListHeaderView.superView:")
+        debugPrint(self.superview?.superview)
+    }
 }

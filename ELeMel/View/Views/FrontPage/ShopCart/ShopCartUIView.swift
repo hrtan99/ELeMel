@@ -17,8 +17,8 @@ class ShopCartUIView: UIView {
         // Drawing code
     }
     */
-    // 购物车中的商品
-    static var productions =  [[String: Any]]()
+    // 购物车中的商品 ID: count 类型的键值对
+    static var productions =  [[Int: Int]]()
     
     let currentVC = UIViewController.current()   // 当前的控制器
     let shopCartList = ShopCartListUITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
@@ -83,7 +83,7 @@ class ShopCartUIView: UIView {
         currentVC!.view.addSubview(shopCartList)
         
         shopCartList.shopCartDidPressed()
-        debugPrint(ShopCartListUITableView.rows)
+        debugPrint("ShopCartListUITableView.rows: " + String(ShopCartListUITableView.rows))
     }
     
     
@@ -92,48 +92,48 @@ class ShopCartUIView: UIView {
 
 extension ShopCartUIView {
     // 一次添加一个商品
-    class func addProduction(forname: String, price: Double) {
-        
+    class func addProduction(forid: Int) {
+        print("value of 'forid': " + String(forid))
         for i in 0 ..< productions.count {
-            // 找到对应的商品count加一
-            if (productions[i])["name"] as! String == forname {
-                print("finded product!")
-                (productions[i])["count"] = productions[i]["count"] as! Int + 1
-                debugPrint(productions)
+            // 找到了对应id的count 更新并直接返回
+            if productions[i][forid] != nil {
+                let value = productions[i][forid]
+                productions[i].updateValue(value! + 1, forKey: forid)
                 return
             }
-            
-            
         }
-        // 上面没添加成功在这里添加
-        productions.append(["name": forname, "price": price, "count": 1 ])
+        // 上面循环正常退出救市还没有设置对应商品
+        productions.append([forid: 1])
+        print("ShopCartUIView.productions:")
         debugPrint(ShopCartUIView.productions)
     }
     
-    class func subProduction(forname: String){
+    class func subProduction(forid: Int){
         for i in 0 ..< productions.count {
-            // 找到对应的商品count减一
-            if productions[i]["name"] as! String == forname {
-                productions[i]["count"] = productions[i]["count"] as! Int - 1
-                
-                if productions[i]["count"] as! Int == 0 {
+            // 找到了对应id的count 更新并直接返回
+            if productions[i][forid] != nil {
+                let value = productions[i][forid]
+                // 如果value等于1直接移除
+                if value == 1 {
                     productions.remove(at: i)
+                    return
                 }
-                debugPrint(productions)
-                return
+                productions[i].updateValue(value! - 1, forKey: forid)
             }
-            
-            
         }
-        
-
+//        debugPrint(ShopCartUIView.productions)
     }
     
     // 更新购物车视图
     func updateShopCartView(){
         var totalPrice = 0.0
         for production in ShopCartUIView.productions {
-            totalPrice = Double((production["count"] as! Int)) * (production["price"] as! Double) + totalPrice
+            let dishes = (currentVC as! RestaurantDetailPageViewController).restaurant!.dishes!
+            for dish in dishes {
+                if let count = production[dish.ID!] {
+                    totalPrice = totalPrice + Double(dish.price! * Float(count))
+                }
+            }
         }
         self.totalPriceLabel.text! = String(totalPrice)
     }

@@ -19,6 +19,8 @@ class DishesListUITableView: UITableView {
     */
     
 //    var shopCart:ShopCartUIView
+    var dishes: [ProductionModel]?
+    
     
     init(frame: CGRect) {
         super.init(frame: frame, style: .plain)
@@ -29,10 +31,9 @@ class DishesListUITableView: UITableView {
         self.dataSource = self
         self.rowHeight = 120
         
-//        shopCart = 
-        
-        
-        
+        // 初始化商品
+        let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
+        dishes = currentVC.restaurant!.dishes
     }
     
     required init?(coder: NSCoder) {
@@ -44,7 +45,7 @@ class DishesListUITableView: UITableView {
 
 extension DishesListUITableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dishes!.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,17 +54,26 @@ extension DishesListUITableView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishesTableViewCell", for: indexPath) as! DishesTableViewCell
+        let dish = dishes![indexPath.row]
+        cell.id = dish.ID // 吧id传进去
+        cell.icon.image = dish.productionPhoto
+        cell.nameLabel.text = dish.name
+        cell.infoLabel.text = dish.info
+        cell.saleCountLabel.text = String(dish.saleCount!)
+        cell.priceLabel.text = String(dish.price!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        debugPrint("exec selected func")
+
         let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
         let cell = cellForRow(at: indexPath) as! DishesTableViewCell
         let newVC = MealInfoViewController()
+        // 设置相关属性
         newVC.cell = cell
         newVC.superViewController = currentVC
-//        newVC.view.backgroundColor = .white
+        newVC.dish = dishes![indexPath.row]
+        
         currentVC.present(newVC, animated: true, completion: nil)
         
         

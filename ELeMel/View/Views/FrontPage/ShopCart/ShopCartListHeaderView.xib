@@ -26,6 +26,9 @@
                     <state key="normal" title="清空">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="removeAll:" destination="Kgf-Ri-Ovd" eventType="touchUpInside" id="nGl-4h-INV"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trashbin" translatesAutoresizingMaskIntoConstraints="NO" id="8u9-mf-0RK">
                     <rect key="frame" x="302" y="7" width="28" height="18"/>

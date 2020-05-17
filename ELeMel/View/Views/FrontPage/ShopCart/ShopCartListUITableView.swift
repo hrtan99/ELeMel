@@ -19,6 +19,8 @@ class ShopCartListUITableView: UITableView {
     */
     static var isShow: Bool = false
     static var rows: Int = 0   // 行数，对应商品的种类
+    static var cells: [DishesTableViewCell] = [DishesTableViewCell]()
+
     var myBackgroundView: UIView?
 
     let cellHeight:Int = 44
@@ -32,7 +34,7 @@ class ShopCartListUITableView: UITableView {
     
     // 记录顶部导航栏透明度
     static var recordNaviBarAlpha:CGFloat = 0
-    
+     
     override init(frame: CGRect, style: UITableView.Style) {
         
         super.init(frame: initFrame, style: style)
@@ -47,6 +49,9 @@ class ShopCartListUITableView: UITableView {
         
         // 设置headerView
         let headerView = ShopCartListHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+        headerView.shopList = self
+        print("headerView.shopList = self: ")
+        debugPrint(headerView.shopList ?? nil!)
         self.tableHeaderView = headerView
         
         // cell的行高
@@ -85,7 +90,7 @@ class ShopCartListUITableView: UITableView {
     
     // 显示购物车列表
     func showShopCartList(flag: Bool){
-        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight - 85 - 35, width: UIScreen.main.bounds.width, height: self.rowHeight + 35)
+        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight * CGFloat(ShopCartListUITableView.rows) - 85 - 35, width: UIScreen.main.bounds.width, height: self.rowHeight * CGFloat(ShopCartListUITableView.rows) + 35)
         let bgFinalFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: finalFrame.origin.y)
         
         if flag {
@@ -131,14 +136,22 @@ extension ShopCartListUITableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("value of indexpath.row: " + String(indexPath.row))
         let cell = self.dequeueReusableCell(withIdentifier: "cell") as! ShopCartListTableViewCell
         cell.selectionStyle = .none
-        
+         
         // 根据productions修改购物车的cell 改为和商品对应的数据
-        cell.nameLabel.text! = ShopCartUIView.productions[indexPath.row]["name"] as! String
-        let count = ShopCartUIView.productions[indexPath.row]["count"] as! Int
-        cell.numLabel.text! = String(count)
-        cell.priceLabel.text! = String(ShopCartUIView.productions[indexPath.row]["price"] as! Double)
+        let production = ShopCartUIView.productions[indexPath.row]
+        let VC = UIViewController.current() as! RestaurantDetailPageViewController
+        
+        for d in VC.restaurant!.dishes! {
+            if let count = production[d.ID!] {
+                cell.numLabel.text! = String(count)
+                cell.nameLabel.text! = d.name!
+                cell.priceLabel.text! = String(d.price!)
+            }
+        }
+        
         
         return cell
     }

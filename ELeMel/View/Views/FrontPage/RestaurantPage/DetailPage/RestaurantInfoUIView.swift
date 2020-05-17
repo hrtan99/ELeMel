@@ -17,14 +17,39 @@ class RestaurantInfoUIView: UIView {
         // Drawing code
     }
     */
+
+    
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var phoneNumber: UILabel!
+    @IBOutlet weak var openTime: UILabel!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         let xib = UINib(nibName: "RestaurantInfoUIView", bundle: nil)
         let view = xib.instantiate(withOwner: self, options: nil).first as! UIView
-        self.addSubview(view)
         
+        
+        let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
+        let restaurant = currentVC.restaurant!
+        
+        // 设置商家图片
+        for i in 0 ..< restaurant.restaurantPhoto!.count {
+            let imageView = UIImageView(frame: CGRect(x: 8 + i * 78, y: 68, width: 70, height: 70))
+            imageView.image = restaurant.restaurantPhoto![i]
+            imageView.contentMode = .scaleToFill
+            view.addSubview(imageView)
+        }
+        
+        restaurantName.text = restaurant.name
+        category.text = restaurant.category
+        address.text = restaurant.address
+        phoneNumber.text = restaurant.phoneNum
+        openTime.text = restaurant.openTime
+        self.addSubview(view)
     }
     
     required init?(coder: NSCoder) {

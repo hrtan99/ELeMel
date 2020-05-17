@@ -120,13 +120,16 @@ class DAO {
 //        delete(tableName: "image")
         
 //        checkProductionModel()
-        checkRestaurantModel()
+//        checkRestaurantModel()
 //        checkOrderModel()
 //        checkUserModel()
+        
+        initData()
+        
         // 检查查询语句
-        select(tableName: "image")
-        select(tableName: "restaurant")
-        select(tableName: "dish")
+//        _ = select(tableName: "image")
+//        _ = select(tableName: "restaurant")
+//        _ = select(tableName: "dish")
         
         
         DBManager.closeDB()
@@ -144,8 +147,8 @@ class DAO {
         production.productionPhoto = UIImage(named: "yabo")
         
         production.saveToDB()
-        debugPrint(production.ID!)
-        debugPrint(production)
+//        debugPrint(production.ID!)
+//        debugPrint(production)
         
     }
     
@@ -191,8 +194,50 @@ class DAO {
         res.saveDishesToDB()
         res = RestaurantModel(id: 1)
         
-        debugPrint(res)
-        debugPrint(res.productionCount)
+//        debugPrint(res)
+//        debugPrint(res.productionCount)
+    }
+    
+    static func initData() {
+        var res = RestaurantModel()
+        res.name = "绝味鸭脖(河西店)"
+        res.notice = "没有什么是一根鸭脖解决不了的，如果有，那就两根！"
+        res.category = "快餐"
+        res.address = "柳州市柳南区潭中西路19号"
+        res.phoneNum = "13617723005"
+        res.openTime = "09:30-23:59"
+        res.rates = 4.7
+        res.productionCount = 2
+        res.restaurantIcon = UIImage(named: "jueweiyabologo")
+        res.restaurantPoster = UIImage(named: "jwybposter")
+        res.restaurantPhoto = [UIImage(named: "jwybphoto1")!, UIImage(named: "jwybphoto2")!]
+        
+        // 保存了以后才有ID
+        res.saveToDB()
+        
+        let p1 = ProductionModel()
+        p1.name = "招牌鸭脖"
+        p1.price = 15
+        p1.ingredients = "黑鸭鸭脖"
+        p1.info = "37.8元/500g 够辣才过瘾！才是鸭脖最性感的姿势。别问为什么那么多人啃，不够味何以做行业老大！"
+        p1.saleCount = 129
+        p1.restaurantID = res.ID
+        p1.rates = 1.0
+        p1.productionPhoto = UIImage(named: "yabo")
+        
+        let p2 = ProductionModel()
+        p2.name = "招牌鸭掌"
+        p2.price = 16
+        p2.ingredients = "黑鸭鸭章"
+        p2.info = "48.8元/500g 闻味知香，入口带辣，品之回甜。此等美味，何不大吃一斤"
+        p2.saleCount = 53
+        p2.restaurantID = res.ID
+        p2.rates = 0.85
+        p2.productionPhoto = UIImage(named: "yazhang")
+        
+        res.dishes = [p1, p2]
+        res.saveDishesToDB()
+        
     }
     
     static func checkOrderModel() {
@@ -213,12 +258,12 @@ class DAO {
             print(Error.self)
         }
         
-        print("it's order:")
-        print(order)
+//        print("it's order:")
+//        print(order)
         let id = order.ID!
         let order2 = OrderModel(id: id)
-        print("it's order2:")
-        print(order2)
+//        print("it's order2:")
+//        print(order2)
         
     }
     
@@ -231,7 +276,7 @@ class DAO {
         user.address = "河西路185号"
         
         user.saveToDB()
-        debugPrint(DAO.select(tableName: "user"))
+//        debugPrint(DAO.select(tableName: "user"))
     }
     
     
@@ -245,6 +290,14 @@ class DAO {
         dropTable(tableName: "order2dish")
         
     }
+    
+    // 返回表中记录的数量
+    static func getTableEntryCount(tableName: String) -> Int{
+        DBManager.openDB()
+        return select(tableName: tableName)!.count
+        DBManager.closeDB()
+    }
+    
     
     // MARK: 生成标准的sql语句，并调用sqlManager的接口执行
     
@@ -348,7 +401,7 @@ class DAO {
             }
             print("exec " + sql)
             let result = DBManager.execQuerySQL(sql: sql)
-            debugPrint(result)
+//            debugPrint(result)
             return result
         }
         else {
@@ -369,7 +422,7 @@ class DAO {
                 sql = sql + ";"
             }
             let result = DBManager.execQuerySQL(sql: sql)
-            debugPrint(result)
+//            debugPrint(result)
             return result
         }
         

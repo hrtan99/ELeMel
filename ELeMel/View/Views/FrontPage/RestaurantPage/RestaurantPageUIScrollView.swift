@@ -44,11 +44,11 @@ class RestaurantPageUIScrollView: UIScrollView {
     
     
     func initView(){
-        
+        let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
         // 初始化餐馆首页图片
         let restaurantImageFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: ORIGIN_HEIGHT)
         restaurantImageView = UIImageView(frame: restaurantImageFrame) //暂时随便放个图
-        restaurantImageView?.image = UIImage(named: "yabo")
+        restaurantImageView?.image = currentVC.restaurant!.restaurantPoster
         restaurantImageView?.contentMode = .scaleAspectFill
         
         // 初始化餐馆信息卡片

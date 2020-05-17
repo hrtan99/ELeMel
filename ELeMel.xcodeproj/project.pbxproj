@@ -24,6 +24,7 @@
 		E93F623E246E999A00A8DDF4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */; };
 		E93F6240246E9CE600A8DDF4 /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */; };
 		E93F6242246EF29300A8DDF4 /* ToolClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6241246EF29300A8DDF4 /* ToolClass.swift */; };
+		E93F624424714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */; };
 		E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */; };
 		E9407AA2246AFEEC00A3413B /* MealInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */; };
 		E9407AAC246C437200A3413B /* ShopCartListUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */; };
@@ -98,6 +99,7 @@
 		E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
 		E93F6241246EF29300A8DDF4 /* ToolClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolClass.swift; sourceTree = "<group>"; };
+		E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosUICollectionView.swift; sourceTree = "<group>"; };
 		E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealInfoViewController.swift; sourceTree = "<group>"; };
 		E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealInfoViewController.xib; sourceTree = "<group>"; };
 		E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListUITableView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				E943CD5324693F620076E8CE /* CommentListUITableView.swift */,
 				E943CD552469453E0076E8CE /* RestaurantInfoUIView.swift */,
 				E943CD57246945580076E8CE /* RestaurantInfoUIView.xib */,
+				E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */,
 			);
 			path = DetailPage;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				E943CD562469453E0076E8CE /* RestaurantInfoUIView.swift in Sources */,
 				E962486D2464270D00475CF6 /* RestaurantIntroductionTableViewCell.swift in Sources */,
 				E9407AB2246D88C800A3413B /* ShopCartListHeaderView.swift in Sources */,
+				E93F624424714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift in Sources */,
 				E93E904324617A2300D0EFE8 /* UserInfoPageTableViewController.swift in Sources */,
 				E97954092459355F00D861FE /* AppDelegate.swift in Sources */,
 				E9ED348F246E646B00C3E5D0 /* DAO.swift in Sources */,

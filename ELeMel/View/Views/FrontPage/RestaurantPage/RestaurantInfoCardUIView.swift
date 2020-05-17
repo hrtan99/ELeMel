@@ -17,6 +17,7 @@ class RestaurantInfoCardUIView: UIView {
         // Drawing code
     }
     */
+    @IBOutlet weak var icon: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +26,8 @@ class RestaurantInfoCardUIView: UIView {
         let view = xib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         
-        
+        let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
+        icon.image = currentVC.restaurant!.restaurantIcon
     }
     
     required init?(coder: NSCoder) {

@@ -26,7 +26,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="绝味鸭脖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3U-Ao-OEU">
-                        <rect key="frame" x="100" y="10" width="70" height="20.5"/>
+                        <rect key="frame" x="100" y="10" width="202" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -87,6 +87,10 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="icon" destination="99n-Dq-15y" id="nc2-Dh-r20"/>
+                <outlet property="name" destination="Q3U-Ao-OEU" id="QPp-yL-G1c"/>
+            </connections>
             <point key="canvasLocation" x="144.92753623188406" y="150.66964285714286"/>
         </tableViewCell>
     </objects>

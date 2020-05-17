@@ -12,10 +12,17 @@ class MealInfoViewController: UIViewController {
 
     var cell: DishesTableViewCell?
     var superViewController: RestaurantDetailPageViewController?
+    var dish: ProductionModel?
     
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var subButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var saleCountLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var ingredientLabel: UILabel!
     var num: Int?
     
     override func viewDidLoad() {
@@ -27,6 +34,17 @@ class MealInfoViewController: UIViewController {
             numLabel.isHidden = true
             subButton.isHidden = true
         }
+        initLabels()
+    }
+    
+    func initLabels() {
+        nameLabel.text = dish!.name
+        saleCountLabel.text = "月售" + String(dish!.saleCount!)
+        priceLabel.text = String(dish!.price!)
+        infoLabel.text = dish!.info
+        ingredientLabel.text = "主要原料" + dish!.ingredients!
+        imageView.image = dish!.productionPhoto!
+        imageView.contentMode = .scaleAspectFill
     }
     
     

@@ -10,6 +10,9 @@ import UIKit
 
 class RestaurantIntroductionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,6 +14,7 @@ class ShopCartListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,6 +27,7 @@ class ShopCartListTableViewCell: UITableViewCell {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
+//        ShopCartListUITableView.cells
         
     }
     @IBAction func subButtonPressed(_ sender: Any) {
