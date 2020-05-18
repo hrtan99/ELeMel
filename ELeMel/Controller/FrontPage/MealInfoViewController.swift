@@ -42,7 +42,7 @@ class MealInfoViewController: UIViewController {
         saleCountLabel.text = "月售" + String(dish!.saleCount!)
         priceLabel.text = String(dish!.price!)
         infoLabel.text = dish!.info
-        ingredientLabel.text = "主要原料" + dish!.ingredients!
+        ingredientLabel.text = "主要原料:" + dish!.ingredients!
         imageView.image = dish!.productionPhoto!
         imageView.contentMode = .scaleAspectFill
     }

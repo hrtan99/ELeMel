@@ -34,4 +34,26 @@ class ToolClass {
         return 5
     }
     
+    static func convert(from: [[Int: Int]]) -> [Int: Int] {
+        var result = [Int:Int]()
+        for dic in from {
+            for (key, value) in dic {
+                result.updateValue(value, forKey: key)
+            }
+            
+        }
+        return result
+    }
+    
+    static func convert(from: [Int: Int]) -> [[Int: Int]]{
+        var result = [[Int: Int]]()
+        for (key, value) in from {
+            result.append([key: value])
+        }
+        return result
+    }
+    
+    
+    
+    
 }

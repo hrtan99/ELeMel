@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U94-XK-XWo">
-                        <rect key="frame" x="117" y="37" width="20" height="15"/>
+                        <rect key="frame" x="117" y="37" width="28" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <color key="tintColor" red="0.89610886570000003" green="0.31342646480000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -90,6 +90,7 @@
             <connections>
                 <outlet property="icon" destination="99n-Dq-15y" id="nc2-Dh-r20"/>
                 <outlet property="name" destination="Q3U-Ao-OEU" id="QPp-yL-G1c"/>
+                <outlet property="ratesLabel" destination="U94-XK-XWo" id="aYb-W4-R3g"/>
             </connections>
             <point key="canvasLocation" x="144.92753623188406" y="150.66964285714286"/>
         </tableViewCell>

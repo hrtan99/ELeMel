@@ -27,10 +27,21 @@ class ShopCartListTableViewCell: UITableViewCell {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-//        ShopCartListUITableView.cells
-        
+        for i in 0 ..< ShopCartListUITableView.cells.count {
+            if ShopCartListUITableView.cells[i].nameLabel.text == self.nameLabel.text {
+                ShopCartListUITableView.cells[i].addButtonPressed(self)
+            }
+            
+        }
+        (self.superview as! ShopCartListUITableView).reloadData()
     }
     @IBAction func subButtonPressed(_ sender: Any) {
-        
+        for i in 0 ..< ShopCartListUITableView.cells.count {
+            if ShopCartListUITableView.cells[i].nameLabel.text == self.nameLabel.text {
+                ShopCartListUITableView.cells[i].subButtonPressed(self)
+            }
+        }
+        (self.superview as! ShopCartListUITableView).reloadData()
+
     }
 }

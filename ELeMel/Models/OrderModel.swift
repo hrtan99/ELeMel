@@ -33,7 +33,7 @@ class OrderModel {
         let tableEntry = DAO.select(tableName: OrderFormTableField.TableName.rawValue, columns: nil, condition: "\(OrderFormTableField.ID.rawValue) = \(id)")?.first
         
         self.ID = tableEntry?[OrderFormTableField.ID.rawValue] as? Int
-        self.totalPrice = tableEntry?[OrderFormTableField.TotalPrice.rawValue] as? Float
+        self.totalPrice = Float(tableEntry?[OrderFormTableField.TotalPrice.rawValue] as! Double)
         self.createdTime = tableEntry?[OrderFormTableField.CreatedTime.rawValue] as? String
         self.paymentMethod = tableEntry?[OrderFormTableField.PaymentMethod.rawValue] as? String
         self.userId = tableEntry?[OrderFormTableField.UserID.rawValue] as? Int
@@ -67,7 +67,7 @@ class OrderModel {
             // 更新ID
             let entry = DAO.select(tableName: OrderFormTableField.TableName.rawValue, columns: [OrderFormTableField.ID.rawValue], condition: "\(OrderFormTableField.CreatedTime.rawValue) = \(ToolClass.addSingleQuotes(str: self.createdTime!)) AND \( OrderFormTableField.UserID.rawValue) = \(self.userId!)")?.first
             self.ID = entry?[OrderFormTableField.ID.rawValue] as? Int
-            debugPrint(self.ID)
+            debugPrint(self.ID!)
 
             // 更新order2dish表
             for (dishID, dishCount) in self.dishesInfo! {

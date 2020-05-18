@@ -25,6 +25,12 @@
 		E93F6240246E9CE600A8DDF4 /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */; };
 		E93F6242246EF29300A8DDF4 /* ToolClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6241246EF29300A8DDF4 /* ToolClass.swift */; };
 		E93F624424714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */; };
+		E93F6246247225A100A8DDF4 /* DataInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6245247225A100A8DDF4 /* DataInit.swift */; };
+		E93F6248247247C000A8DDF4 /* paymentInfoCardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93F6247247247C000A8DDF4 /* paymentInfoCardUIView.xib */; };
+		E93F624A24725C4400A8DDF4 /* OrderDishListUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F624924725C4400A8DDF4 /* OrderDishListUIView.swift */; };
+		E93F624C24725C6500A8DDF4 /* OrderDishList.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93F624B24725C6500A8DDF4 /* OrderDishList.xib */; };
+		E93F624E247271C300A8DDF4 /* CreateOrderPageBarUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F624D247271C300A8DDF4 /* CreateOrderPageBarUIView.swift */; };
+		E93F6250247271DC00A8DDF4 /* CreateOrderPageBarUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93F624F247271DC00A8DDF4 /* CreateOrderPageBarUIView.xib */; };
 		E9407AA1246AFEEC00A3413B /* MealInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */; };
 		E9407AA2246AFEEC00A3413B /* MealInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */; };
 		E9407AAC246C437200A3413B /* ShopCartListUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */; };
@@ -100,6 +106,12 @@
 		E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
 		E93F6241246EF29300A8DDF4 /* ToolClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolClass.swift; sourceTree = "<group>"; };
 		E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosUICollectionView.swift; sourceTree = "<group>"; };
+		E93F6245247225A100A8DDF4 /* DataInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInit.swift; sourceTree = "<group>"; };
+		E93F6247247247C000A8DDF4 /* paymentInfoCardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = paymentInfoCardUIView.xib; sourceTree = "<group>"; };
+		E93F624924725C4400A8DDF4 /* OrderDishListUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDishListUIView.swift; sourceTree = "<group>"; };
+		E93F624B24725C6500A8DDF4 /* OrderDishList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDishList.xib; sourceTree = "<group>"; };
+		E93F624D247271C300A8DDF4 /* CreateOrderPageBarUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderPageBarUIView.swift; sourceTree = "<group>"; };
+		E93F624F247271DC00A8DDF4 /* CreateOrderPageBarUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOrderPageBarUIView.xib; sourceTree = "<group>"; };
 		E9407A9F246AFEEC00A3413B /* MealInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealInfoViewController.swift; sourceTree = "<group>"; };
 		E9407AA0246AFEEC00A3413B /* MealInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealInfoViewController.xib; sourceTree = "<group>"; };
 		E9407AAB246C437200A3413B /* ShopCartListUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCartListUITableView.swift; sourceTree = "<group>"; };
@@ -174,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				E937E9E92466DD3500C897B2 /* UIViewControllerExtension.swift */,
-				E93F6241246EF29300A8DDF4 /* ToolClass.swift */,
 			);
 			path = ToolClass;
 			sourceTree = "<group>";
@@ -200,7 +211,7 @@
 		E9407AA4246BA5B300A3413B /* FrontPage */ = {
 			isa = PBXGroup;
 			children = (
-				E9407AB8246D9D3800A3413B /* OrderPage */,
+				E9407AB8246D9D3800A3413B /* CreateOrderPage */,
 				E9407AB6246D9CBD00A3413B /* ShopCart */,
 				E9407AB7246D9D1A00A3413B /* RestaurantPage */,
 			);
@@ -260,13 +271,18 @@
 			path = RestaurantPage;
 			sourceTree = "<group>";
 		};
-		E9407AB8246D9D3800A3413B /* OrderPage */ = {
+		E9407AB8246D9D3800A3413B /* CreateOrderPage */ = {
 			isa = PBXGroup;
 			children = (
 				E9407AB9246D9D9F00A3413B /* OrderPageUIScrollView.swift */,
 				E9407ABD246DB4A000A3413B /* paymentInfoCardUIView.swift */,
+				E93F6247247247C000A8DDF4 /* paymentInfoCardUIView.xib */,
+				E93F624924725C4400A8DDF4 /* OrderDishListUIView.swift */,
+				E93F624B24725C6500A8DDF4 /* OrderDishList.xib */,
+				E93F624D247271C300A8DDF4 /* CreateOrderPageBarUIView.swift */,
+				E93F624F247271DC00A8DDF4 /* CreateOrderPageBarUIView.xib */,
 			);
-			path = OrderPage;
+			path = CreateOrderPage;
 			sourceTree = "<group>";
 		};
 		E96248662464237D00475CF6 /* View */ = {
@@ -419,6 +435,7 @@
 		E9ED3483246E583100C3E5D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E93F6241246EF29300A8DDF4 /* ToolClass.swift */,
 				E9ED3487246E58EA00C3E5D0 /* ProductionModel.swift */,
 				E9ED3489246E5C2E00C3E5D0 /* RestaurantModel.swift */,
 				E9ED348B246E626C00C3E5D0 /* OrderModel.swift */,
@@ -433,6 +450,7 @@
 				E9ED348E246E646B00C3E5D0 /* DAO.swift */,
 				E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */,
 				E93F6239246E992700A8DDF4 /* ELeMel-Bridging-Header.h */,
+				E93F6245247225A100A8DDF4 /* DataInit.swift */,
 			);
 			path = ORM;
 			sourceTree = "<group>";
@@ -549,12 +567,15 @@
 				E937E9E42466AA8D00C897B2 /* DishesTableViewCell.xib in Resources */,
 				E937E9F42468479200C897B2 /* CommentTableViewCell.xib in Resources */,
 				E943CD5224693C620076E8CE /* DetailPageTitleUIView.xib in Resources */,
+				E93F6248247247C000A8DDF4 /* paymentInfoCardUIView.xib in Resources */,
+				E93F6250247271DC00A8DDF4 /* CreateOrderPageBarUIView.xib in Resources */,
 				E943CD46246933E70076E8CE /* RestaurantInfoCardUIView.xib in Resources */,
 				E9407AB4246D891100A3413B /* ShopCartListHeaderView.xib in Resources */,
 				E943CD58246945580076E8CE /* RestaurantInfoUIView.xib in Resources */,
 				E9407AB0246C440B00A3413B /* ShopCartListTableViewCell.xib in Resources */,
 				E937E9F02466E7D100C897B2 /* ShopCartUIView.xib in Resources */,
 				E97954102459355F00D861FE /* Main.storyboard in Resources */,
+				E93F624C24725C6500A8DDF4 /* OrderDishList.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E937E9F82468640100C897B2 /* RestaurantPageUIScrollView.swift in Sources */,
+				E93F6246247225A100A8DDF4 /* DataInit.swift in Sources */,
 				E943CD562469453E0076E8CE /* RestaurantInfoUIView.swift in Sources */,
 				E962486D2464270D00475CF6 /* RestaurantIntroductionTableViewCell.swift in Sources */,
 				E9407AB2246D88C800A3413B /* ShopCartListHeaderView.swift in Sources */,
@@ -606,7 +628,9 @@
 				E93E9041246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift in Sources */,
 				E943CD5424693F620076E8CE /* CommentListUITableView.swift in Sources */,
 				E943CD4C24693BD30076E8CE /* DetailPageUIView.swift in Sources */,
+				E93F624E247271C300A8DDF4 /* CreateOrderPageBarUIView.swift in Sources */,
 				E9407AAF246C440B00A3413B /* ShopCartListTableViewCell.swift in Sources */,
+				E93F624A24725C4400A8DDF4 /* OrderDishListUIView.swift in Sources */,
 				E937E9EA2466DD3500C897B2 /* UIViewControllerExtension.swift in Sources */,
 				E937E9F32468479200C897B2 /* CommentTableViewCell.swift in Sources */,
 				E979543A2459366500D861FE /* RootTabBarViewController.swift in Sources */,

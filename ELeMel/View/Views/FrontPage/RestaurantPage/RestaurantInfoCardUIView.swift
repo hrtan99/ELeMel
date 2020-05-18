@@ -17,7 +17,9 @@ class RestaurantInfoCardUIView: UIView {
         // Drawing code
     }
     */
+    @IBOutlet weak var noticeLabel: UILabel!
     @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +30,8 @@ class RestaurantInfoCardUIView: UIView {
         
         let currentVC = UIViewController.current() as! RestaurantDetailPageViewController
         icon.image = currentVC.restaurant!.restaurantIcon
+        noticeLabel.text = "公告：" + currentVC.restaurant!.notice!
+        nameLabel.text = currentVC.restaurant!.name
     }
     
     required init?(coder: NSCoder) {

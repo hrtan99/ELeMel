@@ -80,6 +80,7 @@ enum UserTableField: String {
     case ID = "id"
     case Name = "username"
     case Password = "password"
+    case RealName = "name"
     case PhoneNumber = "phonenumber"
     case Email = "email"
     case Address = "address"
@@ -90,14 +91,14 @@ class DAO {
     static var DBManager = SQLiteManager()   // 数据库管理器
     
     static func initDB() {
-        DBManager.openDB()
+        _ = DBManager.openDB()
         clearDB()
         let createDishTable = "CREATE TABLE IF NOT EXISTS dish('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'name' TEXT NOT NULL, 'price' FLOAT NOT NULL, 'ingredient' TEXT NOT NULL, 'info' TEXT NOT NULL, 'salecount' INT NOT NULL, 'restaurantid' INT NOT NULL, 'rates' FLOAT NOT NULL);"
         let createRestaurantTable = "CREATE TABLE IF NOT EXISTS restaurant('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'name' TEXT NOT NULL, 'notice' TEXT NOT NULL, 'type' TEXT NOT NULL, 'address' TEXT NOT NULL, 'phonenumber' TEXT NOT NULL, 'opentime' TEXT NOT NULL, 'rates' FLOAT NOT NULL, 'productioncount' INT NOT  NULL);"
         let createImageTable = "CREATE TABLE IF NOT EXISTS image('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'type' TEXT NOT NULL, 'dishid' INT NOT NULL, 'restaurantid' INT NOT NULL, 'data' BLOB NOT NULL);"
         let createOrderTable = "CREATE TABLE IF NOT EXISTS orderform('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'totalprice' FLOAT NOT NULL, 'createdtime' TEXT NOT NULL, 'paymentmethod' TEXT NOT NULL, 'userid' INT NOT NULL, 'restaurantid' INT NOT NULL);"
         let createOrder2DishTable = "CREATE TABLE IF NOT EXISTS order2dish('orderid' INT NOT NULL, 'dishid' INT NOT NULL, 'dishcount' INT NOT NULL, PRIMARY KEY(orderid, dishid));"
-        let createUserTable = "CREATE TABLE IF NOT EXISTS user('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'username' TEXT NOT NULL, 'password' TEXT NOT NULL, 'phonenumber' TEXT NOT NULL, 'email' TEXT NOT NULL, 'address' TEXT NOT NULL);"
+        let createUserTable = "CREATE TABLE IF NOT EXISTS user('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'username' TEXT NOT NULL, 'password' TEXT NOT NULL, 'name' TEXT NOT NULL, 'phonenumber' TEXT NOT NULL, 'email' TEXT NOT NULL, 'address' TEXT NOT NULL);"
         
         // 执行sql尝试创建数据表 返回的bool值存在六个匿名变量里面
         _ = DBManager.execNoneQuerySQL(sql: createDishTable)
@@ -124,13 +125,12 @@ class DAO {
 //        checkOrderModel()
 //        checkUserModel()
         
-        initData()
+        DataInit.initData()
         
         // 检查查询语句
 //        _ = select(tableName: "image")
 //        _ = select(tableName: "restaurant")
 //        _ = select(tableName: "dish")
-        
         
         DBManager.closeDB()
     }
@@ -198,54 +198,14 @@ class DAO {
 //        debugPrint(res.productionCount)
     }
     
-    static func initData() {
-        var res = RestaurantModel()
-        res.name = "绝味鸭脖(河西店)"
-        res.notice = "没有什么是一根鸭脖解决不了的，如果有，那就两根！"
-        res.category = "快餐"
-        res.address = "柳州市柳南区潭中西路19号"
-        res.phoneNum = "13617723005"
-        res.openTime = "09:30-23:59"
-        res.rates = 4.7
-        res.productionCount = 2
-        res.restaurantIcon = UIImage(named: "jueweiyabologo")
-        res.restaurantPoster = UIImage(named: "jwybposter")
-        res.restaurantPhoto = [UIImage(named: "jwybphoto1")!, UIImage(named: "jwybphoto2")!]
-        
-        // 保存了以后才有ID
-        res.saveToDB()
-        
-        let p1 = ProductionModel()
-        p1.name = "招牌鸭脖"
-        p1.price = 15
-        p1.ingredients = "黑鸭鸭脖"
-        p1.info = "37.8元/500g 够辣才过瘾！才是鸭脖最性感的姿势。别问为什么那么多人啃，不够味何以做行业老大！"
-        p1.saleCount = 129
-        p1.restaurantID = res.ID
-        p1.rates = 1.0
-        p1.productionPhoto = UIImage(named: "yabo")
-        
-        let p2 = ProductionModel()
-        p2.name = "招牌鸭掌"
-        p2.price = 16
-        p2.ingredients = "黑鸭鸭章"
-        p2.info = "48.8元/500g 闻味知香，入口带辣，品之回甜。此等美味，何不大吃一斤"
-        p2.saleCount = 53
-        p2.restaurantID = res.ID
-        p2.rates = 0.85
-        p2.productionPhoto = UIImage(named: "yazhang")
-        
-        res.dishes = [p1, p2]
-        res.saveDishesToDB()
-        
-    }
+
     
     static func checkOrderModel() {
         let order = OrderModel()
         order.totalPrice = 99.9
         order.createdTime = "10:30"
         order.paymentMethod = "支付宝"
-        order.userId = 10010
+        order.userId = 1
         order.restaurantID = 1
         order.dishesInfo = [
             1: 10,
@@ -257,13 +217,9 @@ class DAO {
         catch {
             print(Error.self)
         }
-        
-//        print("it's order:")
-//        print(order)
+
         let id = order.ID!
         let order2 = OrderModel(id: id)
-//        print("it's order2:")
-//        print(order2)
         
     }
     

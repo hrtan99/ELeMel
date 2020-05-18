@@ -49,6 +49,8 @@ class ShopCartUIView: UIView {
     // 结算按钮按下，进入提交订单页面
     @IBAction func createOrderButtonPressed(_ sender: Any) {
         let createOrderVC = OrderPageViewController()
+        let VC = UIViewController.current() as! RestaurantDetailPageViewController
+        createOrderVC.restaurant = VC.restaurant
         UIViewController.current()?.navigationController?.pushViewController(createOrderVC, animated: true)
     }
     

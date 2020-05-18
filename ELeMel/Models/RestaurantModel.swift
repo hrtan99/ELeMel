@@ -64,7 +64,7 @@ class RestaurantModel {
         self.address = tableEntry?[RestaurantTableField.Address.rawValue] as? String
         self.phoneNum = tableEntry?[RestaurantTableField.PhoneNumber.rawValue] as? String
         self.openTime = tableEntry?[RestaurantTableField.OpenTime.rawValue] as? String
-        self.rates = tableEntry?[RestaurantTableField.Rates.rawValue] as? Float
+        self.rates = Float(tableEntry?[RestaurantTableField.Rates.rawValue] as! Double)
         self.productionCount = tableEntry?[RestaurantTableField.ProductionCount.rawValue] as? Int
         self.restaurantPhoto = [UIImage]()
         

@@ -12,6 +12,7 @@ class RestaurantIntroductionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var ratesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

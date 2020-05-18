@@ -39,8 +39,9 @@ class ShopCartListHeaderView: UIView {
                 ShopCartListUITableView.cells[i].subButtonPressed(self)
             }
         }
+        // headerview的父视图的父视图是shoplist
         (self.superview?.superview as! ShopCartListUITableView).showShopCartList(flag: false)
-        print("ShopCartListHeaderView.superView:")
-        debugPrint(self.superview?.superview)
+//        print("ShopCartListHeaderView.superView:")
+//        debugPrint(self.superview?.superview)
     }
 }
