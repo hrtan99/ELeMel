@@ -235,7 +235,12 @@ class DAO {
 //        debugPrint(DAO.select(tableName: "user"))
     }
     
-    
+    static func deleteOrder(forid: Int) {
+        _ = self.delete(tableName: Order2DishTableField.TableName.rawValue, condition: "\(Order2DishTableField.OrderID.rawValue) = \(forid)")
+        
+        _ = self.delete(tableName: OrderFormTableField.TableName.rawValue, condition: "\(OrderFormTableField.ID.rawValue) = \(forid)")
+        
+    }
     
     static func clearDB() {
         dropTable(tableName: "dish")

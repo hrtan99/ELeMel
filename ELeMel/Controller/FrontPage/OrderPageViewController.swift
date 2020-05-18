@@ -18,6 +18,7 @@ class OrderPageViewController: UIViewController {
     let SCREEN_WIDTH = UIScreen.main.bounds.width
     let SCREEN_HEIGHT = UIScreen.main.bounds.height
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +45,11 @@ class OrderPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if createdOrder {
+            
+        }
+        
+        
     }
     */
 

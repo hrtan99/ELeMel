@@ -24,6 +24,7 @@ class ShopCartUIView: UIView {
     let shopCartList = ShopCartListUITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
     
     
+    @IBOutlet weak var shopCartImage: UIImageView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -34,6 +35,7 @@ class ShopCartUIView: UIView {
         let view = xib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         
+        shopCartImage.layer.zPosition = .greatestFiniteMagnitude
 //        products = [String: Int]()
         addTapGesture()
 
@@ -48,6 +50,16 @@ class ShopCartUIView: UIView {
     
     // 结算按钮按下，进入提交订单页面
     @IBAction func createOrderButtonPressed(_ sender: Any) {
+        if ShopCartUIView.productions.count == 0 {
+            let alert = UIAlertController(title: "系统提示", message: "您还没有选择商品哦～\n请选择商品再来结算吧～", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            let confirmAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            alert.addAction(confirmAction)
+            UIViewController.current()?.present(alert, animated: true, completion: nil)
+            return
+            
+        }
         let createOrderVC = OrderPageViewController()
         let VC = UIViewController.current() as! RestaurantDetailPageViewController
         createOrderVC.restaurant = VC.restaurant

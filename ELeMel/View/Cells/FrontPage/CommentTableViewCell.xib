@@ -22,7 +22,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="绝味鸭脖logo" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-pR-j5N">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="usericon" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-pR-j5N">
                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -74,6 +74,6 @@
     </objects>
     <resources>
         <image name="starIcon" width="433" height="433"/>
-        <image name="绝味鸭脖logo" width="80" height="80"/>
+        <image name="usericon" width="500" height="500"/>
     </resources>
 </document>

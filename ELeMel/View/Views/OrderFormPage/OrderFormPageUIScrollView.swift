@@ -1,14 +1,14 @@
 //
-//  OrderPageUIScrollView.swift
+//  OrderFormPageUIScrollView.swift
 //  ELeMel
 //
-//  Created by thomas on 2020/5/14.
+//  Created by thomas on 2020/5/18.
 //  Copyright © 2020 thomas. All rights reserved.
 //
 
 import UIKit
 
-class OrderPageUIScrollView: UIScrollView {
+class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -17,12 +17,13 @@ class OrderPageUIScrollView: UIScrollView {
         // Drawing code
     }
     */
-    // 顶部的渐变颜色块
     var topColorView: UIView?
-    var paymentCard: UIView?
     var orderListView: UIView?
     var baseView: UIView?
+
+    var order: OrderModel?
     
+    let currentVC = UIViewController.current() as! OrderFormPageViewController
     let SCREEN_WIDTH = UIScreen.main.bounds.width
     let SCREEN_HEIGHT = UIScreen.main.bounds.height
     
@@ -32,12 +33,23 @@ class OrderPageUIScrollView: UIScrollView {
         self.showsVerticalScrollIndicator = false
         self.delegate = self
         
+        self.order = currentVC.order
+        
         initTopColorView()
         initBaseView()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    // 初始化背景
+    func initBaseView() {
+        baseView = UIView(frame: CGRect(x: 8, y: 0, width: SCREEN_WIDTH - 16, height: 1000))
+        baseView!.backgroundColor = .systemGray6
+        
+        
+        
+        self.addSubview(baseView!)
+        
+        initOrderListView()
+        
     }
     
     // 初始化顶部的渐变颜色块
@@ -65,20 +77,14 @@ class OrderPageUIScrollView: UIScrollView {
         self.addSubview(topColorView!)
     }
     
-    func initPaymentCard() {
-        paymentCard = paymentInfoCardUIView(frame: CGRect(x: 0, y: 0, width: baseView!.frame.size.width, height: 200))
-        debugPrint(baseView!.frame.size.width)
-        baseView!.addSubview(paymentCard!)
-    }
-    
-    // 订单中的菜品列表
     func initOrderListView() {
-        let currentVC = UIViewController.current() as! OrderPageViewController
+        debugPrint(order)
+        let res = RestaurantModel(id: order!.restaurantID!)
         
         let headView = UIView(frame: CGRect(x:0, y: 0, width:baseView!.bounds.width, height: 50))
         let headLabel = UILabel(frame: CGRect(x:20, y: 0, width:baseView!.bounds.width - 20, height: 50))
         headView.backgroundColor = .white
-        headLabel.text = currentVC.restaurant?.name
+        headLabel.text = res.name!
         headLabel.textAlignment = .left
         headView.addSubview(headLabel)
         
@@ -86,9 +92,9 @@ class OrderPageUIScrollView: UIScrollView {
          // 根据购物车添加菜品
         var totalPrice:Float = 0
         var i = 0
-        for dic in ShopCartUIView.productions {
+        for dic in ToolClass.convert(from: order!.dishesInfo!) {
             // 找到id对应的dish
-            for dish in currentVC.restaurant!.dishes! {
+            for dish in res.dishes! {
                 if let count = dic[dish.ID!] {
                     let newView = OrderDishListUIView(frame: CGRect(x: 0, y: 50 + i * 50, width: Int(baseView!.bounds.width), height: 50))
                     newView.imageLabel.image = dish.productionPhoto
@@ -105,7 +111,6 @@ class OrderPageUIScrollView: UIScrollView {
             }
             
         }
-        debugPrint(dishesView)
         
         let footView = UIView(frame: CGRect(x: 0, y: dishesView.last!.frame.origin.y + 50, width: baseView!.bounds.width, height: 50))
         let footViewLabel = UILabel(frame: CGRect(x: 0, y: 0, width: (baseView?.bounds.width)! - 30, height: 50))
@@ -114,7 +119,7 @@ class OrderPageUIScrollView: UIScrollView {
         footViewLabel.text = "总计： ¥" + "\(totalPrice)"
         footView.addSubview(footViewLabel)
         
-        orderListView = UIView(frame: CGRect(x: 0, y: paymentCard!.frame.maxY + 8, width: baseView!.bounds.width, height: footView.frame.maxY + 50))
+        orderListView = UIView(frame: CGRect(x: 0, y: 0, width: baseView!.bounds.width, height: footView.frame.maxY + 50))
         
         orderListView?.addSubview(headView)
         for i in 0 ..< dishesView.count {
@@ -124,35 +129,18 @@ class OrderPageUIScrollView: UIScrollView {
         
         baseView?.addSubview(orderListView!)
         
-        // 顺便更新底部bar的总价
-        currentVC.totalPrice = totalPrice
-        
-        
         
     }
     
     
-    
-    func initBaseView() {
-        baseView = UIView(frame: CGRect(x: 8, y: 0, width: SCREEN_WIDTH - 16, height: 1000))
-        baseView!.backgroundColor = .systemGray6
-        
-        
-        
-        self.addSubview(baseView!)
-        
-        initPaymentCard()
-        initOrderListView()
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
-    
-    
-    
     
 }
 
 
-extension OrderPageUIScrollView: UIScrollViewDelegate {
+extension OrderFormPageUIScrollView {
     // 监听滑动事件
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = self.contentOffset.y + 88  // y方向的偏移

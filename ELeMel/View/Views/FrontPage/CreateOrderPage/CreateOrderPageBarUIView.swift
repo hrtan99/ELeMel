@@ -20,6 +20,7 @@ class CreateOrderPageBarUIView: UIView {
     
     @IBOutlet weak var totalPriceLabel: UILabel!
     
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +34,9 @@ class CreateOrderPageBarUIView: UIView {
     }
     
     @IBAction func createOrder(_ sender: Any) {
+        
+        
+        
         let currentVC = UIViewController.current() as! OrderPageViewController
         
         // 获取当前系统时间
@@ -41,9 +45,6 @@ class CreateOrderPageBarUIView: UIView {
         timeFormatter.dateFormat = "YYY-MM-dd HH:MM:SS"
         let time = timeFormatter.string(from: date)
         debugPrint(time)
-        
-        
-        
         
         // 创建新订单
         var newOrder = OrderModel()
@@ -62,9 +63,23 @@ class CreateOrderPageBarUIView: UIView {
         }
         AppDelegate.user.orders?.append(newOrder)
         
-        print("pls check if the order created:")
-        debugPrint(DAO.select(tableName: "orderform"))
-        debugPrint(DAO.select(tableName: "order2dish"))
+        print("\npls check if the order created:")
+        debugPrint(DAO.select(tableName: "orderform")!)
+        debugPrint(DAO.select(tableName: "order2dish")!)
+        
+        
+        let alert = UIAlertController(title: "系统提示", message: "订单创建成功！\n将返回上级页面", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "好的", style: .default, handler: alertHandler(action:))
+        
+        alert.addAction(confirmAction)
+        UIViewController.current()?.present(alert, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    @objc func alertHandler(action: UIAlertAction) {
+        UIViewController.current()?.navigationController?.popViewController(animated: true)
     }
     
 }

@@ -90,7 +90,7 @@ class ShopCartListUITableView: UITableView {
     
     // 显示购物车列表
     func showShopCartList(flag: Bool){
-        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight * CGFloat(ShopCartListUITableView.rows) - 85 - 35, width: UIScreen.main.bounds.width, height: self.rowHeight * CGFloat(ShopCartListUITableView.rows) + 35)
+        let finalFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.rowHeight * CGFloat(ShopCartListUITableView.rows) - 85 - 35 - 20, width: UIScreen.main.bounds.width, height: self.rowHeight * CGFloat(ShopCartListUITableView.rows) + 35 + 20)
         let bgFinalFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: finalFrame.origin.y)
         
         if flag {
