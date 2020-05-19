@@ -235,6 +235,7 @@ class DAO {
 //        debugPrint(DAO.select(tableName: "user"))
     }
     
+    // 删除订单
     static func deleteOrder(forid: Int) {
         _ = self.delete(tableName: Order2DishTableField.TableName.rawValue, condition: "\(Order2DishTableField.OrderID.rawValue) = \(forid)")
         

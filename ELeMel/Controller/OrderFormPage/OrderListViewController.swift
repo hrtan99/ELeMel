@@ -12,6 +12,8 @@ class OrderListViewController: UIViewController {
     
     var orderList: OrderListPageUIScrollView?
     
+    static var needRefresh = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,9 @@ class OrderListViewController: UIViewController {
     }
     */
     override func viewWillAppear(_ animated: Bool) {
-        orderList?.initOrderList()
+        if OrderListViewController.needRefresh {
+            orderList?.refresh()
+            OrderListViewController.needRefresh = false
+        }
     }
 }

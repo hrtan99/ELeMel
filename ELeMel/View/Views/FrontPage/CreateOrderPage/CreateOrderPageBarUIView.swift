@@ -63,6 +63,9 @@ class CreateOrderPageBarUIView: UIView {
         }
         AppDelegate.user.orders?.append(newOrder)
         
+        // 订单页面也要刷新
+        OrderListViewController.needRefresh = true
+        
         print("\npls check if the order created:")
         debugPrint(DAO.select(tableName: "orderform")!)
         debugPrint(DAO.select(tableName: "order2dish")!)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
+class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate{
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -20,6 +20,10 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
     var topColorView: UIView?
     var orderListView: UIView?
     var baseView: UIView?
+    var orderDetailCard: OrderDetailCardUIView?
+    
+    var deleteButton: UILabel?
+    var buttonView: UIView?
 
     var order: OrderModel?
     
@@ -37,6 +41,9 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
         
         initTopColorView()
         initBaseView()
+        initOrderListView()
+        initDetailCard()
+        initDeleteButton()
     }
     
     // 初始化背景
@@ -44,11 +51,7 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
         baseView = UIView(frame: CGRect(x: 8, y: 0, width: SCREEN_WIDTH - 16, height: 1000))
         baseView!.backgroundColor = .systemGray6
         
-        
-        
         self.addSubview(baseView!)
-        
-        initOrderListView()
         
     }
     
@@ -77,6 +80,7 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
         self.addSubview(topColorView!)
     }
     
+    // 初始化订单列表
     func initOrderListView() {
         debugPrint(order)
         let res = RestaurantModel(id: order!.restaurantID!)
@@ -119,7 +123,7 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
         footViewLabel.text = "总计： ¥" + "\(totalPrice)"
         footView.addSubview(footViewLabel)
         
-        orderListView = UIView(frame: CGRect(x: 0, y: 0, width: baseView!.bounds.width, height: footView.frame.maxY + 50))
+        orderListView = UIView(frame: CGRect(x: 0, y: 0, width: baseView!.bounds.width, height: footView.frame.maxY + 8))
         
         orderListView?.addSubview(headView)
         for i in 0 ..< dishesView.count {
@@ -131,6 +135,87 @@ class OrderFormPageUIScrollView: UIScrollView, UIScrollViewDelegate {
         
         
     }
+    
+    
+    func initDetailCard() {
+        self.orderDetailCard = OrderDetailCardUIView(frame: CGRect(x: 0, y: orderListView!.frame.maxY, width: baseView!.bounds.width, height: 210))
+        orderDetailCard?.orderIDLabel.text = "\(order?.ID ?? 10086)"
+        orderDetailCard?.createdTimeLabel.text = order?.createdTime
+        orderDetailCard?.addressLabel.text = AppDelegate.user.address
+        orderDetailCard?.nameLabel.text = AppDelegate.user.realName
+        orderDetailCard?.paymentMethodLabel.text = order?.paymentMethod
+        baseView?.addSubview(orderDetailCard!)
+    }
+    
+    // 初始化删除按钮
+    func initDeleteButton() {
+        buttonView = UIView(frame: CGRect(x: 0, y: orderDetailCard!.frame.maxY + 8, width: baseView!.bounds.width, height: 44))
+        buttonView!.backgroundColor = .white
+        deleteButton = UILabel(frame: CGRect(x: 0, y: 0, width: baseView!.bounds.width, height: 44))
+        deleteButton!.text = "删除订单"
+        deleteButton!.textAlignment = .center
+        deleteButton!.textColor = .systemRed
+        
+        // 给按钮添加点击事件
+        buttonView!.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteButtonPressed))
+        tapGesture.numberOfTouchesRequired = 1
+        buttonView!.addGestureRecognizer(tapGesture)
+        
+        
+        
+        buttonView!.addSubview(deleteButton!)
+        baseView?.addSubview(buttonView!)
+    }
+    
+    
+    // 删除订单
+    @objc func deleteButtonPressed() {
+        // 弹窗进行确认
+        let alert = UIAlertController(title: "系统提示", message: "确定要删除订单吗？", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: deleteCanceled(action:))
+        let confirmAction = UIAlertAction(title: "确定", style: .default, handler: deleteConfirmed(action: ))
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+        UIViewController.current()?.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    // 取消删除
+    @objc func deleteCanceled(action: UIAlertAction) {
+        
+    }
+    
+    // 确认删除
+    @objc func deleteConfirmed(action: UIAlertAction) {
+        // 删除订单
+        DAO.deleteOrder(forid: order!.ID!)
+        
+        for i in 0 ..< AppDelegate.user.orders!.count {
+            if AppDelegate.user.orders![i].ID == self.order!.ID {
+                AppDelegate.user.orders!.remove(at: i)
+                break
+            }
+        }
+        
+        
+        // 弹窗告知并返回上一级
+        let alert = UIAlertController(title: "系统提示", message: "订单删除成功！\n将返回上级页面！", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "好的", style: .default, handler: backToTab(action:))
+        
+        alert.addAction(confirmAction)
+        UIViewController.current()?.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    // 返回tab页面
+    @objc func backToTab(action: UIAlertAction) {
+        // 设置刷新标志
+        OrderListViewController.needRefresh = true
+        UIViewController.current()?.navigationController?.popViewController(animated: true)
+    }
+    
     
     
     required init?(coder: NSCoder) {

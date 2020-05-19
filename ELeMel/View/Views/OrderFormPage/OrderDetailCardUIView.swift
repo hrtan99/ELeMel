@@ -1,14 +1,14 @@
 //
-//  OrderDishListUIView.swift
+//  OrderDetailCardUIView.swift
 //  ELeMel
 //
-//  Created by thomas on 2020/5/18.
+//  Created by thomas on 2020/5/19.
 //  Copyright © 2020 thomas. All rights reserved.
 //
 
 import UIKit
 
-class OrderDishListUIView: UIView {
+class OrderDetailCardUIView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -17,23 +17,25 @@ class OrderDishListUIView: UIView {
         // Drawing code
     }
     */
-    @IBOutlet weak var imageLabel: UIImageView!
+
+    @IBOutlet weak var orderIDLabel: UILabel!
+    @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var numLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        let xib = UINib(nibName: "OrderDishList", bundle: nil)
+        let xib = UINib(nibName: "OrderDetailCardUIView", bundle: nil)
         let view = xib.instantiate(withOwner: self, options: nil).first as! UIView
         self.addSubview(view)
-        
-        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    
     
 }
