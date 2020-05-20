@@ -66,11 +66,9 @@ class ShopCartUIView: UIView {
         UIViewController.current()?.navigationController?.pushViewController(createOrderVC, animated: true)
     }
     
-    override class func awakeFromNib() {
-        
-    }
+
     
-    // 添加触控板事件
+    // 添加触控事件
     func addTapGesture() {
         self.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction))

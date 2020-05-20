@@ -456,7 +456,6 @@
 		E9ED3483246E583100C3E5D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E93F6241246EF29300A8DDF4 /* ToolClass.swift */,
 				E9ED3487246E58EA00C3E5D0 /* ProductionModel.swift */,
 				E9ED3489246E5C2E00C3E5D0 /* RestaurantModel.swift */,
 				E9ED348B246E626C00C3E5D0 /* OrderModel.swift */,
@@ -468,6 +467,7 @@
 		E9ED348D246E644E00C3E5D0 /* ORM */ = {
 			isa = PBXGroup;
 			children = (
+				E93F6241246EF29300A8DDF4 /* ToolClass.swift */,
 				E9ED348E246E646B00C3E5D0 /* DAO.swift */,
 				E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */,
 				E93F6239246E992700A8DDF4 /* ELeMel-Bridging-Header.h */,
