@@ -1,6 +1,7 @@
 ELeMei名字由来：饿了么（ELeMe）
 
 IOS期末大作业项目，主要实现两个tab页面，首页和订单页。
+![demo](https://github.com/thomas10011/ELeMel/blob/master/demo.gif)
 
 文件树如下：
 
