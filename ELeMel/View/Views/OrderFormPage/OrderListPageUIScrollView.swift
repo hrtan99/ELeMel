@@ -50,28 +50,29 @@ class OrderListPageUIScrollView: UIScrollView {
         topLabel!.textAlignment = .center
         self.addSubview(topLabel!)
         
-        if let orders = AppDelegate.user.orders {
+        let orders = AppDelegate.user.orders
+        if orders?.count != 0 {
             var j = 0
-            for i in (0 ... orders.count - 1).reversed() {
+            for i in (0 ... orders!.count - 1).reversed() {
                 let orderInfoCard = OrderInfoCardUIView(frame: CGRect(x: 17, y: topLabel!.frame.maxY + 8 + CGFloat(j) * 98, width: UIScreen.main.bounds.width - 34, height: 90))
                 
-                let res = RestaurantModel(id: orders[i].restaurantID!)
-                let dish = ProductionModel(id: (orders[i].dishesInfo?.first!.key)!)
+                let res = RestaurantModel(id: orders![i].restaurantID!)
+                let dish = ProductionModel(id: (orders![i].dishesInfo?.first!.key)!)
                 orderInfoCard.restaurantNameLabel.text = res.name!
                 orderInfoCard.restaurantIcon.image = res.restaurantIcon!
-                orderInfoCard.totalPriceLabel.text = "¥\(orders[i].totalPrice!)"
-                orderInfoCard.timeLabel.text = orders[i].createdTime!
+                orderInfoCard.totalPriceLabel.text = "¥\(orders![i].totalPrice!)"
+                orderInfoCard.timeLabel.text = orders![i].createdTime!
                 orderInfoCard.dishNameLabel.text = dish.name
-                orderInfoCard.order = orders[i]
-                if orders[i].dishesInfo!.count > 1 {
-                    orderInfoCard.dishNameLabel.text = orderInfoCard.dishNameLabel.text! + "等\(orders[i].dishesInfo!.count)件商品"
+                orderInfoCard.order = orders![i]
+                if orders![i].dishesInfo!.count > 1 {
+                    orderInfoCard.dishNameLabel.text = orderInfoCard.dishNameLabel.text! + "等\(orders![i].dishesInfo!.count)件商品"
                 }
                 
                 
                 self.addSubview(orderInfoCard)
                 j = j + 1
             }
-            self.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(orders.count) * 98 + 50 + 20)
+            self.contentSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(orders!.count) * 98 + 50 + 20)
 
             
         }

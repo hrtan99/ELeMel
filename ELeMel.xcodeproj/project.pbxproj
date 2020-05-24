@@ -21,7 +21,6 @@
 		E93E9041246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E9040246179F200D0EFE8 /* UserInfoPageNavigationViewController.swift */; };
 		E93E904324617A2300D0EFE8 /* UserInfoPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E904224617A2300D0EFE8 /* UserInfoPageTableViewController.swift */; };
 		E93F6238246E96A800A8DDF4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6237246E96A800A8DDF4 /* UserModel.swift */; };
-		E93F623E246E999A00A8DDF4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */; };
 		E93F6240246E9CE600A8DDF4 /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F623F246E9CE600A8DDF4 /* SqliteManager.swift */; };
 		E93F6242246EF29300A8DDF4 /* ToolClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6241246EF29300A8DDF4 /* ToolClass.swift */; };
 		E93F624424714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F624324714B4100A8DDF4 /* RestaurantPhotosUICollectionView.swift */; };
@@ -61,6 +60,7 @@
 		E962486D2464270D00475CF6 /* RestaurantIntroductionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E962486B2464270D00475CF6 /* RestaurantIntroductionTableViewCell.swift */; };
 		E962486E2464270D00475CF6 /* RestaurantIntroductionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E962486C2464270D00475CF6 /* RestaurantIntroductionTableViewCell.xib */; };
 		E96248702464EF0E00475CF6 /* RestaurantDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E962486F2464EF0E00475CF6 /* RestaurantDetailPageViewController.swift */; };
+		E962E0F8247A2D5F004A3723 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E962E0F7247A2D5F004A3723 /* libsqlite3.0.tbd */; };
 		E97954092459355F00D861FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97954082459355F00D861FE /* AppDelegate.swift */; };
 		E979540B2459355F00D861FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979540A2459355F00D861FE /* SceneDelegate.swift */; };
 		E97954102459355F00D861FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E979540E2459355F00D861FE /* Main.storyboard */; };
@@ -149,6 +149,7 @@
 		E962486B2464270D00475CF6 /* RestaurantIntroductionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantIntroductionTableViewCell.swift; sourceTree = "<group>"; };
 		E962486C2464270D00475CF6 /* RestaurantIntroductionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantIntroductionTableViewCell.xib; sourceTree = "<group>"; };
 		E962486F2464EF0E00475CF6 /* RestaurantDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailPageViewController.swift; sourceTree = "<group>"; };
+		E962E0F7247A2D5F004A3723 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E97954052459355F00D861FE /* ELeMel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELeMel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97954082459355F00D861FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E979540A2459355F00D861FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E93F623E246E999A00A8DDF4 /* libsqlite3.tbd in Frameworks */,
+				E962E0F8247A2D5F004A3723 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +208,7 @@
 		E93F623C246E999A00A8DDF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E962E0F7247A2D5F004A3723 /* libsqlite3.0.tbd */,
 				E93F623D246E999A00A8DDF4 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
